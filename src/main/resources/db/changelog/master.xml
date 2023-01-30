@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+    <changeSet id="0001" author="JakubHałucha">
+        <createTable tableName="appointment">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="date" type="VARCHAR(100)" />
+            <column name="importance" type="VARCHAR(100)" />
+            <column name="price" type="INT" />
+            <column name="doctor_id" type="BIGINT" autoIncrement="true"/>
+            <column name="patient_id" type="BIGINT" autoIncrement="true"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="0002" author="JakubHałucha">
+        <createTable tableName="doctor">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(100)" />
+            <column name="surname" type="VARCHAR(100)" />
+            <column name="phoneNumber" type="VARCHAR(100)" />
+            <column name="appointment_id" type="BIGINT" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="specialization" type="VARCHAR(100)" />
+            <column name="email" type="VARCHAR(100)" />
+        </createTable>
+        <addForeignKeyConstraint baseTableName="doctor" baseColumnNames="appointment_id"
+                                 constraintName="fk_doctor_appointment_id" referencedTableName="appointment"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+    <changeSet id="0003" author="JakubHałucha">
+        <createTable tableName="patient">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(100)"/>
+            <column name="surname" type="VARCHAR(100)"/>
+            <column name="pesel" type="VARCHAR(100)"/>
+            <column name="dateOfBirth" type="VARCHAR(100)"/>
+
+        </createTable>
+    </changeSet>
+    <include file="../testdata/testdata.sql" relativeToChangelogFile="true"/>
+</databaseChangeLog>
