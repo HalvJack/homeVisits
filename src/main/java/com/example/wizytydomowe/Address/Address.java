@@ -1,4 +1,4 @@
-package com.example.wizytydomowe.Doctor;
+package com.example.wizytydomowe.Address;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,13 +15,13 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @Setter
 @Getter
-public class Doctor {
+public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String name;
-    private String surname;
-    private String phoneNumber;
-    private String specialization;
-    private String email;
+    private String city;
+    private String zipCode; // w jakim formacie jako string zwykly czy np zeby z pauza bylo czy jako int zwykly
+    private String street;
+    private Integer houseNumber;
+    private Integer flatNumber; // Optional
 }
