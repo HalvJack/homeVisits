@@ -5,6 +5,7 @@ import com.example.wizytydomowe.Patient.PatientDtoMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class AppointmentService {
