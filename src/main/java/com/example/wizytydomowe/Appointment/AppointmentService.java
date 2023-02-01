@@ -5,7 +5,6 @@ import com.example.wizytydomowe.Patient.PatientDtoMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.Random;
 
 @Service
 public class AppointmentService {
@@ -23,11 +22,11 @@ public class AppointmentService {
         this.patientDtoMapper = patientDtoMapper;
     }
 
-    Optional<AppointmentDto> getAppointmentById(Integer id){
+    Optional<PatientDto1> getAppointmentById(Integer id){
         return appointmentRepository.findById(id)
                 .map(appointmentDtoMapper::map);
     }
-    AppointmentDto saveAppointment(AppointmentDto appointmentDto){
+    PatientDto1 saveAppointment(PatientDto1 appointmentDto){
         Appointment appointment = appointmentDtoMapper.map(appointmentDto);
         Appointment savedAppointment = appointmentRepository.save(appointment);
         return appointmentDtoMapper.map(savedAppointment);

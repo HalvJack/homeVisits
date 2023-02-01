@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,6 +21,7 @@ public class AddressController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
     @PostMapping
     ResponseEntity<AddressDto> saveAddress(@RequestBody AddressDto addressDto){
         AddressDto savedAddress = addressService.saveAddress(addressDto);
@@ -26,6 +29,7 @@ public class AddressController {
                 .path("/{id}")
                 .buildAndExpand(savedAddress.getId())
                 .toUri();
+//        return ResponseEntity.created(savedAddressUri).body(savedAddress);
         return ResponseEntity.created(savedAddressUri).body(savedAddress);
     }
 

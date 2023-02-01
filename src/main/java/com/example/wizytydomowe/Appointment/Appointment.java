@@ -22,7 +22,7 @@ public class Appointment {
     private Integer id;
     private LocalDate date;
     private Importance importance;
-    private BigDecimal price;
+    private Integer price;
     @ManyToOne
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;

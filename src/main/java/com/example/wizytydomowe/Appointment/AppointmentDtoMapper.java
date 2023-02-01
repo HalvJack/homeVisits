@@ -4,8 +4,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AppointmentDtoMapper {
-    AppointmentDto map(Appointment appointment){
-        AppointmentDto appointmentDto = new AppointmentDto();
+    PatientDto1 map(Appointment appointment){
+        PatientDto1 appointmentDto = new PatientDto1();
         appointmentDto.setId(appointment.getId());
         appointmentDto.setDate(appointment.getDate());
         appointmentDto.setImportance(appointment.getImportance());
@@ -14,7 +14,7 @@ public class AppointmentDtoMapper {
         appointmentDto.setPatient(appointment.getPatient());
         return appointmentDto;
     }
-    Appointment map(AppointmentDto appointmentDto){
+    Appointment map(PatientDto1 appointmentDto){
         Appointment appointment = new Appointment();
         appointment.setId(appointmentDto.getId());
         appointment.setDate(appointmentDto.getDate());

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Wizyty Domowe</title>
+    <link href="../static/main.css" th:href="@{/main.css}" rel="stylesheet" />
+</head>
+<body>
+<h1>Lista dostępnych lekarzy</h1>
+    <table>
+        <thead>
+        <tr>
+            <td>name</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="doctor: ${doctors}" th:object="${doctor}">
+            <td th:text="*{surname}"></td>
+        </tr>
+        </tbody>
+    </table>
+<h2>Umów wizytę domową wpisując nr doktora w poniższym formularzu</h2>
+<form method="post" action="/appointment/saveAppointment" th:object="${saveAppointment}">
+    <label>
+        Wybierz doktora
+        <input th:field="*{number}" type="number" placeholder="Wybierz numer">
+    </label>
+    <button type="submit">Wybierz</button>
+</form>
+</body>
+</html>

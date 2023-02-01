@@ -2,6 +2,7 @@ package com.example.wizytydomowe;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
@@ -10,7 +11,9 @@ import java.util.Random;
 public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        ConfigurableApplicationContext run = SpringApplication.run(Application.class, args);
+        TestData testData = run.getBean(TestData.class);
+        testData.createTestData();
     }
 
 }

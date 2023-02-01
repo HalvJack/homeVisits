@@ -1,6 +1,8 @@
 package com.example.wizytydomowe.Doctor;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface DoctorRepository extends CrudRepository<Doctor, Integer> {
+@Repository
+public interface DoctorRepository extends JpaRepository<Doctor, Integer> {
 }

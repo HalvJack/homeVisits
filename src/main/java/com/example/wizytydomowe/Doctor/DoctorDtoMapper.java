@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class DoctorDtoMapper {
-    DoctorDto map(Doctor doctor) {
+    public DoctorDto map(Doctor doctor) {
         DoctorDto doctorDto = new DoctorDto();
         doctorDto.setId(doctor.getId());
         doctorDto.setName(doctor.getName());
@@ -14,5 +14,14 @@ public class DoctorDtoMapper {
         doctorDto.setSpecialization(doctor.getSpecialization());
         doctorDto.setEmail(doctor.getEmail());
         return doctorDto;
+    }
+    public Doctor map(DoctorDto doctorDto){
+        Doctor doctor = new Doctor();
+        doctor.setName(doctorDto.getName());
+        doctor.setSurname(doctorDto.getSurname());
+        doctor.setEmail(doctorDto.getEmail());
+        doctor.setPhoneNumber(doctorDto.getPhoneNumber());
+        doctor.setSpecialization(doctorDto.getSpecialization());
+        return doctor;
     }
 }

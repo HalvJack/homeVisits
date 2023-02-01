@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Wizyty Domowe</title>
+  <link href="../static/main.css" th:href="@{/main.css}" rel="stylesheet" />
+</head>
+<body>
+<h1>Dane Pacjenta</h1>
+
+<section>
+  <table>
+    <thead>
+    <tr>
+      <td>Imię</td>
+      <td>Nazwisko</td>
+      <td>Pesel</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:object="${patient}">
+      <td th:text="*{name}"></td>
+      <td th:text="*{surname}"></td>
+      <td th:text="*{pesel}"></td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+<ul>
+  <li><a href="/appointment/showDoctors">Pokaż dostępnych lekarzy</a></li>
+</ul>
+</body>
+</html>

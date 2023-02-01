@@ -1,74 +1,74 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<!--<?xml version="1.0" encoding="UTF-8" ?>-->
 
-<databaseChangeLog
-        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog ">
-        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd"
-        http://www.liquibase.org/xml/ns/pro
-        http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+<!--<databaseChangeLog-->
+<!--        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"-->
+<!--        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog ">-->
+<!--        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd"-->
+<!--        http://www.liquibase.org/xml/ns/pro-->
+<!--        http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">-->
 
-    <includeAll path="com/example/db/changelog/"/>
+<!--    <includeAll path="com/example/db/changelog/"/>-->
 
-<changeSet id="0001" author="JakubHalucha">
-        <createTable tableName="appointment">
-            <column name="id" type="BIGINT" autoIncrement="true">
-                <constraints nullable="false" primaryKey="true"/>
-            </column>
-            <column name="date" type="VARCHAR(100)"/>
-            <column name="importance" type="VARCHAR(100)"/>
-            <column name="price" type="INT"/>
-            <column name="doctor_id" type="BIGINT" autoIncrement="true"/>
-            <column name="patient_id" type="BIGINT" autoIncrement="true"/>
-        </createTable>
-        <addForeignKeyConstraint baseTableName="appointment" baseColumnNames="doctor_id"
-                                 constraintName="fk_appointment_doctor_id" referencedTableName="doctor"
-                                 referencedColumnNames="id"/>
-        <addForeignKeyConstraint baseTableName="appointment" baseColumnNames="patient_id"
-                                 constraintName="fk_appointment_patient_id" referencedTableName="patient"
-                                 referencedColumnNames="id"/>
-    </changeSet>
-    <changeSet id="0002" author="JakubHalucha">
-        <createTable tableName="doctor">
-            <column name="id" type="BIGINT" autoIncrement="true">
-                <constraints nullable="false" primaryKey="true"/>
-            </column>
-            <column name="name" type="VARCHAR(100)"/>
-            <column name="surname" type="VARCHAR(100)"/>
-            <column name="phoneNumber" type="VARCHAR(100)"/>
-            <column name="specialization" type="VARCHAR(100)"/>
-            <column name="email" type="VARCHAR(100)"/>
-        </createTable>
-    </changeSet>
-    <changeSet id="0003" author="JakubHalucha">
-        <createTable tableName="patient">
-            <column name="id" type="BIGINT" autoIncrement="true">
-                <constraints nullable="false" primaryKey="true"/>
-            </column>
-            <column name="name" type="VARCHAR(100)"/>
-            <column name="surname" type="VARCHAR(100)"/>
-            <column name="pesel" type="VARCHAR(100)"/>
-            <column name="dateOfBirth" type="VARCHAR(100)"/>
-            <column name="address_id" type="VARCHAR(100)"/>
-            <column name="phoneNumber" type="VARCHAR(100)"/>
-            <column name="email" type="VARCHAR(100)"/>
-        </createTable>
+<!--<changeSet id="0001" author="JakubHalucha">-->
+<!--        <createTable tableName="appointment">-->
+<!--            <column name="id" type="BIGINT" autoIncrement="true">-->
+<!--                <constraints nullable="false" primaryKey="true"/>-->
+<!--            </column>-->
+<!--            <column name="date" type="VARCHAR(100)"/>-->
+<!--            <column name="importance" type="VARCHAR(100)"/>-->
+<!--            <column name="price" type="INT"/>-->
+<!--            <column name="doctor_id" type="BIGINT" autoIncrement="true"/>-->
+<!--            <column name="patient_id" type="BIGINT" autoIncrement="true"/>-->
+<!--        </createTable>-->
+<!--        <addForeignKeyConstraint baseTableName="appointment" baseColumnNames="doctor_id"-->
+<!--                                 constraintName="fk_appointment_doctor_id" referencedTableName="doctor"-->
+<!--                                 referencedColumnNames="id"/>-->
+<!--        <addForeignKeyConstraint baseTableName="appointment" baseColumnNames="patient_id"-->
+<!--                                 constraintName="fk_appointment_patient_id" referencedTableName="patient"-->
+<!--                                 referencedColumnNames="id"/>-->
+<!--    </changeSet>-->
+<!--    <changeSet id="0002" author="JakubHalucha">-->
+<!--        <createTable tableName="doctor">-->
+<!--            <column name="id" type="BIGINT" autoIncrement="true">-->
+<!--                <constraints nullable="false" primaryKey="true"/>-->
+<!--            </column>-->
+<!--            <column name="name" type="VARCHAR(100)"/>-->
+<!--            <column name="surname" type="VARCHAR(100)"/>-->
+<!--            <column name="phoneNumber" type="VARCHAR(100)"/>-->
+<!--            <column name="specialization" type="VARCHAR(100)"/>-->
+<!--            <column name="email" type="VARCHAR(100)"/>-->
+<!--        </createTable>-->
+<!--    </changeSet>-->
+<!--    <changeSet id="0003" author="JakubHalucha">-->
+<!--        <createTable tableName="patient">-->
+<!--            <column name="id" type="BIGINT" autoIncrement="true">-->
+<!--                <constraints nullable="false" primaryKey="true"/>-->
+<!--            </column>-->
+<!--            <column name="name" type="VARCHAR(100)"/>-->
+<!--            <column name="surname" type="VARCHAR(100)"/>-->
+<!--            <column name="pesel" type="VARCHAR(100)"/>-->
+<!--            <column name="dateOfBirth" type="VARCHAR(100)"/>-->
+<!--            <column name="address_id" type="VARCHAR(100)"/>-->
+<!--            <column name="phoneNumber" type="VARCHAR(100)"/>-->
+<!--            <column name="email" type="VARCHAR(100)"/>-->
+<!--        </createTable>-->
 
-        <addForeignKeyConstraint baseTableName="patient" baseColumnNames="address_id"
-                                 constraintName="fk_patient_address_id" referencedTableName="address"
-                                 referencedColumnNames="id"/>
-    </changeSet>
-    <changeSet id="0004" author="JakubHalucha">
-        <createTable tableName="address">
-            <column name="id" type="BIGINT" autoIncrement="true">
-                <constraints nullable="false" primaryKey="true"/>
-            </column>
-            <column name="city" type="VARCHAR(100)"/>
-            <column name="zipCode" type="VARCHAR(100)"/>
-            <column name="street" type="VARCHAR(100)"/>
-            <column name="houseNumber" type="VARCHAR(100)"/>
-            <column name="flatNumber" type="VARCHAR(100)"/>
-        </createTable>
-    </changeSet>
-    <include file="../testdata/testdata.sql" relativeToChangelogFile="true"/>
-</databaseChangeLog>
+<!--        <addForeignKeyConstraint baseTableName="patient" baseColumnNames="address_id"-->
+<!--                                 constraintName="fk_patient_address_id" referencedTableName="address"-->
+<!--                                 referencedColumnNames="id"/>-->
+<!--    </changeSet>-->
+<!--    <changeSet id="0004" author="JakubHalucha">-->
+<!--        <createTable tableName="address">-->
+<!--            <column name="id" type="BIGINT" autoIncrement="true">-->
+<!--                <constraints nullable="false" primaryKey="true"/>-->
+<!--            </column>-->
+<!--            <column name="city" type="VARCHAR(100)"/>-->
+<!--            <column name="zipCode" type="VARCHAR(100)"/>-->
+<!--            <column name="street" type="VARCHAR(100)"/>-->
+<!--            <column name="houseNumber" type="VARCHAR(100)"/>-->
+<!--            <column name="flatNumber" type="VARCHAR(100)"/>-->
+<!--        </createTable>-->
+<!--    </changeSet>-->
+<!--    <include file="../testdata/testdata.sql" relativeToChangelogFile="true"/>-->
+<!--</databaseChangeLog>-->

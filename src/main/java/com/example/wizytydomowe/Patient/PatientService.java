@@ -1,5 +1,6 @@
 package com.example.wizytydomowe.Patient;
 
+import com.example.wizytydomowe.Appointment.Appointment;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,5 +21,10 @@ public class PatientService {
     Optional<PatientDto> getPatientById(Integer id){
         return patientRepository.findById(id)
                 .map(patientDtoMapper::map);
+    }
+    PatientDto savePatient(PatientDto patientDto){
+        Patient patient = patientDtoMapper.map(patientDto);
+        Patient savedPatient = patientRepository.save(patient);
+        return patientDtoMapper.map(savedPatient);
     }
 }

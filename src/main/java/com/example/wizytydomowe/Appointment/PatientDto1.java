@@ -4,15 +4,14 @@ import com.example.wizytydomowe.Doctor.Doctor;
 import com.example.wizytydomowe.Patient.Patient;
 import lombok.Data;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
-public class AppointmentDto {
+public class PatientDto1 {
     private Integer id;
     private LocalDate date;
     private Importance importance;
-    private BigDecimal price;
+    private Integer price;
     private Doctor doctor;
     private Patient patient;
 

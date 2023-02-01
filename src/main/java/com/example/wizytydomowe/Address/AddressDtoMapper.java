@@ -16,7 +16,6 @@ public class AddressDtoMapper {
     }
     Address map(AddressDto addressDto){
         Address address = new Address();
-        address.setId(addressDto.getId());
         address.setCity(addressDto.getCity());
         address.setZipCode(addressDto.getZipCode());
         address.setStreet(addressDto.getStreet());
