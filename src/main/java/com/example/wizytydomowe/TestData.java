@@ -29,7 +29,7 @@ public class TestData {
 
     private void createTestDoctors() {
         doctorRepository.save((new Doctor(1,"Paweł","Hałucha","506193161","Medycyna Pracy","pawhal@tlen.pl")));
-        doctorRepository.save((new Doctor(2,"Edyta","Hałucha","888668259","Diabetologia","Edyta_med@wp.pl")));
+        doctorRepository.save((new Doctor(2,"Edyta","Madeja","888668259","Diabetologia","Edyta_med@wp.pl")));
         doctorRepository.save((new Doctor(3,"Patryk","Janas","663123053","Kardiolog","janas@wp.pl")));
     }
 

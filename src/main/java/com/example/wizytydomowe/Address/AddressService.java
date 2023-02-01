@@ -23,4 +23,7 @@ public class AddressService {
         Address savedAddress = adddressRepository.save(address);
         return addressDtoMapper.map(savedAddress);
     }
+    void deleteAddress(Integer id){
+        adddressRepository.deleteById(id);
+    }
 }

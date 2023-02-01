@@ -32,5 +32,11 @@ public class AddressController {
 //        return ResponseEntity.created(savedAddressUri).body(savedAddress);
         return ResponseEntity.created(savedAddressUri).body(savedAddress);
     }
+    @DeleteMapping("/{id}")
+    ResponseEntity<?> deleteAddress(@PathVariable Integer id){
+        addressService.deleteAddress(id);
+        return ResponseEntity.noContent().build();
+
+    }
 
 }

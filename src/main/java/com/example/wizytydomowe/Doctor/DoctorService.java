@@ -23,4 +23,8 @@ public class DoctorService {
         Doctor savedDoctor = doctorRepository.save(doctor);
         return doctorDtoMapper.map(savedDoctor);
     }
+    void deleteDoctor(Integer id){
+        doctorRepository.deleteById(id);
+    }
+
 }

@@ -6,6 +6,7 @@
   <link href="../static/main.css" th:href="@{/main.css}" rel="stylesheet" />
 </head>
 <body>
+<div id="container">
   <h1>Wynik Twoich obliczeń</h1>
   <p th:text="'Kwota netto: ' + ${vat.nettoPrice}">Kwota netto: 100zł</p>
   <p th:text="'Kwota vat: ' + ${vat.vat}">Kwota VAT 23zł</p>
@@ -19,5 +20,6 @@
   <ul>
     <li th:each="i: ${#numbers.sequence(1, size)}" th:text="'Liczba nr ' + ${i}"></li>
   </ul>
+</div>
 </body>
 </html>

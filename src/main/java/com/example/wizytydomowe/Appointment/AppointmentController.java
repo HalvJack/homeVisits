@@ -42,6 +42,12 @@ public class AppointmentController {
                 .toUri();
         return ResponseEntity.created(savedAppointmentUri).body(savedAppointment);
     }
+    @DeleteMapping("/{id}")
+    ResponseEntity<?> deleteAppointment(@PathVariable Integer id){
+        appointmentService.deleteAppointment(id);
+        return ResponseEntity.noContent().build();
+
+    }
 
     @PostMapping("/save")
     String savePromotion(com.example.wizytydomowe.Patient.PatientDto patientDto) {

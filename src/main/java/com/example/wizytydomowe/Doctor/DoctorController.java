@@ -32,4 +32,11 @@ public class DoctorController {
                 .toUri();
         return ResponseEntity.created(savedAppointmentUri).body(savedDoctor);
     }
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<?> deleteDoctor(@PathVariable Integer id){
+        doctorService.deleteDoctor(id);
+        return ResponseEntity.noContent().build();
+
+    }
 }

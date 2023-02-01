@@ -31,4 +31,8 @@ public class AppointmentService {
         Appointment savedAppointment = appointmentRepository.save(appointment);
         return appointmentDtoMapper.map(savedAppointment);
     }
+
+    void deleteAppointment(Integer id){
+        appointmentRepository.deleteById(id);
+    }
 }

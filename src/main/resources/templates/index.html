@@ -6,6 +6,8 @@
     <link href="../static/main.css" th:href="@{/main.css}" rel="stylesheet" />
 </head>
 <body>
+<div id="container">
+
 <h1>Umów wizytę domową wpisując swoje dane w poniższym formularzu</h1>
 <form method="post" action="/appointment/save" th:object="${patientDto}">
     <label>
@@ -22,6 +24,9 @@
     </label>
 
     <button type="submit">Umów</button>
+
+
 </form>
+</div>
 </body>
 </html>
