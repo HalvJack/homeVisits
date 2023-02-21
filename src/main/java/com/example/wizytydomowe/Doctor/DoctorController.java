@@ -1,30 +1,38 @@
 package com.example.wizytydomowe.Doctor;
 
 import com.example.wizytydomowe.Patient.PatientDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.print.Doc;
+import javax.validation.Valid;
 import java.net.URI;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
+@Controller
+@RequiredArgsConstructor
 @RequestMapping("/doctor")
 public class DoctorController {
     private final DoctorService doctorService;
 
-    public DoctorController(DoctorService doctorService) {
-        this.doctorService = doctorService;
-    }
 
     @GetMapping("/{id}")
-    ResponseEntity<DoctorDto> getDoctorById(@PathVariable Integer id){
+    ResponseEntity<DoctorDto> getDoctorById(@PathVariable Long id) {
         return doctorService.getDoctorById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
     @PostMapping
-    ResponseEntity<DoctorDto> saveDoctor(@RequestBody DoctorDto doctorDto){
+    ResponseEntity<DoctorDto> saveDoctor(@Valid @RequestBody DoctorDto doctorDto) {
         DoctorDto savedDoctor = doctorService.saveDoctor(doctorDto);
         URI savedAppointmentUri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -33,8 +41,16 @@ public class DoctorController {
         return ResponseEntity.created(savedAppointmentUri).body(savedDoctor);
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    Map<String, String> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
+        return ex.getBindingResult().getFieldErrors()
+                .stream()
+                .collect(Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage));
+    }
+
     @DeleteMapping("/{id}")
-    ResponseEntity<?> deleteDoctor(@PathVariable Integer id){
+    ResponseEntity<?> deleteDoctor(@PathVariable Long id) {
         doctorService.deleteDoctor(id);
         return ResponseEntity.noContent().build();
 

@@ -15,8 +15,10 @@ public class DoctorDtoMapper {
         doctorDto.setEmail(doctor.getEmail());
         return doctorDto;
     }
-    public Doctor map(DoctorDto doctorDto){
+
+    public Doctor map(DoctorDto doctorDto) {
         Doctor doctor = new Doctor();
+        doctor.setId(doctorDto.getId());
         doctor.setName(doctorDto.getName());
         doctor.setSurname(doctorDto.getSurname());
         doctor.setEmail(doctorDto.getEmail());

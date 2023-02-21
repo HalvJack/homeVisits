@@ -6,24 +6,26 @@ import java.util.Optional;
 
 @Service
 public class AddressService {
-    private final AdddressRepository adddressRepository;
+    private final AddressRepository addressRepository;
     private final AddressDtoMapper addressDtoMapper;
 
-    public AddressService(AdddressRepository adddressRepository, AddressDtoMapper addressDtoMapper) {
-        this.adddressRepository = adddressRepository;
+    public AddressService(AddressRepository adddressRepository, AddressDtoMapper addressDtoMapper) {
+        this.addressRepository = adddressRepository;
         this.addressDtoMapper = addressDtoMapper;
     }
 
-    Optional<AddressDto> getAddressById(Integer id){
-        return adddressRepository.findById(id)
+    Optional<AddressDto> getAddressById(Long id) {
+        return addressRepository.findById(id)
                 .map(addressDtoMapper::map);
     }
-    AddressDto saveAddress(AddressDto addressDto){
+
+    AddressDto saveAddress(AddressDto addressDto) {
         Address address = addressDtoMapper.map(addressDto);
-        Address savedAddress = adddressRepository.save(address);
+        Address savedAddress = addressRepository.save(address);
         return addressDtoMapper.map(savedAddress);
     }
-    void deleteAddress(Integer id){
-        adddressRepository.deleteById(id);
+
+    void deleteAddress(Long id) {
+        addressRepository.deleteById(id);
     }
 }

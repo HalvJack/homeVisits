@@ -3,12 +3,13 @@
 <!--<databaseChangeLog-->
 <!--        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"-->
 <!--        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
-<!--        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog ">-->
-<!--        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd"-->
-<!--        http://www.liquibase.org/xml/ns/pro-->
-<!--        http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">-->
-
-<!--    <includeAll path="com/example/db/changelog/"/>-->
+<!--        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"-->
+<!--        xmlns:pro="http://www.liquibase.org/xml/ns/pro"-->
+<!--        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-->
+<!--		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd-->
+<!--		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd-->
+<!--		http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">-->
+<!--    <includeAll path="main/resources/db/testdata/"/>-->
 
 <!--<changeSet id="0001" author="JakubHalucha">-->
 <!--        <createTable tableName="appointment">-->
@@ -70,5 +71,5 @@
 <!--            <column name="flatNumber" type="VARCHAR(100)"/>-->
 <!--        </createTable>-->
 <!--    </changeSet>-->
-<!--    <include file="../testdata/testdata.sql" relativeToChangelogFile="true"/>-->
+<!--    <include file="../testdata/data.sql" relativeToChangelogFile="true"/>-->
 <!--</databaseChangeLog>-->

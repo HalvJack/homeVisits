@@ -1,12 +1,30 @@
 spring:
-#  liquibase:
-#    change-log: classpath:/db/changelog/master.xml
   datasource:
-    url: jdbc:h2:mem:test
-    username: sa
-    password:
+    url: jdbc:mysql://localhost:3306/wizyty_domowe
+    username: root
+    password: Likeaboss1!
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
+    show-sql: true
+    defer-datasource-initialization: true
     hibernate:
-      ddl-auto: create-drop
-  thymeleaf:
-    cache: false
+      ddl-auto: create
+  sql:
+    init:
+      mode: always
+  security:
+    user:
+      name: user
+      password: admin
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: kubaszekh@gmail.com
+    password: kewjyllhjdhamgdr
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+

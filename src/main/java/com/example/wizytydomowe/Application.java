@@ -12,8 +12,6 @@ public class Application {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext run = SpringApplication.run(Application.class, args);
-        TestData testData = run.getBean(TestData.class);
-        testData.createTestData();
     }
 
 }

@@ -2,26 +2,25 @@ package com.example.wizytydomowe.Appointment;
 
 import com.example.wizytydomowe.Doctor.Doctor;
 import com.example.wizytydomowe.Patient.Patient;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Future;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-@Setter
-@Getter
+@Data
+@Table(name = "appointment")
 public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
+    @Future
     private LocalDate date;
     private Importance importance;
+    @Digits(integer = 4, fraction = 2)
     private Integer price;
     @ManyToOne
     @JoinColumn(name = "doctor_id")

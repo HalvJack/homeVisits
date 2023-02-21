@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AddressDtoMapper {
-    AddressDto map(Address address){
+    AddressDto map(Address address) {
         AddressDto addressDto = new AddressDto();
         addressDto.setId(address.getId());
         addressDto.setCity(address.getCity());
@@ -14,8 +14,10 @@ public class AddressDtoMapper {
         addressDto.setFlatNumber(address.getFlatNumber());
         return addressDto;
     }
-    Address map(AddressDto addressDto){
+
+    Address map(AddressDto addressDto) {
         Address address = new Address();
+        address.setId(addressDto.getId());
         address.setCity(addressDto.getCity());
         address.setZipCode(addressDto.getZipCode());
         address.setStreet(addressDto.getStreet());

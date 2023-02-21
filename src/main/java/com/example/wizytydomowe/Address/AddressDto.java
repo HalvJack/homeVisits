@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class AddressDto {
-    private Integer id;
+    private Long id;
     private String city;
     private String zipCode; // w jakim formacie jako string zwykly czy np zeby z pauza bylo czy jako int zwykly
     private String street;

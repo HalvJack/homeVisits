@@ -4,15 +4,15 @@ import com.example.wizytydomowe.Doctor.Doctor;
 import com.example.wizytydomowe.Patient.Patient;
 import lombok.Data;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
-public class PatientDto1 {
-    private Integer id;
+public class AppointmentDto {
+    private Long id;
     private LocalDate date;
     private Importance importance;
     private Integer price;
     private Doctor doctor;
     private Patient patient;
-
 }

@@ -14,16 +14,18 @@ public class DoctorService {
     private final DoctorDtoMapper doctorDtoMapper;
 
 
-    Optional<DoctorDto> getDoctorById(Integer id){
+    Optional<DoctorDto> getDoctorById(Long id) {
         return doctorRepository.findById(id)
                 .map(doctorDtoMapper::map);
     }
-    DoctorDto saveDoctor(DoctorDto doctorDto){
+
+    DoctorDto saveDoctor(DoctorDto doctorDto) {
         Doctor doctor = doctorDtoMapper.map(doctorDto);
         Doctor savedDoctor = doctorRepository.save(doctor);
         return doctorDtoMapper.map(savedDoctor);
     }
-    void deleteDoctor(Integer id){
+
+    void deleteDoctor(Long id) {
         doctorRepository.deleteById(id);
     }
 
