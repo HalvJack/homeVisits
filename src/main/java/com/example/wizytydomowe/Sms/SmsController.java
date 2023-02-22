@@ -28,8 +28,8 @@ public class SmsController {
         Twilio.init("AC7966eefa166474ad1c7beb3c6479581b", "8f6344b9c113b87fed40dec803fa6406");
         //Twilio.setUsername(Twilio.getRestClient().getAccountSid());
 
-        Message.creator(new PhoneNumber("+48506193161"),
-                new PhoneNumber("+19402027513"), "Pacjent Jakub Hałucha chce zarezerwować wizytę").create();
+        Message.creator(new PhoneNumber("+48131213151"),
+                new PhoneNumber("+1345146"), "Pacjent Jakub Hałucha chce zarezerwować wizytę").create();
 
         return new ResponseEntity<String>("Message sent successfully", HttpStatus.OK);
     }

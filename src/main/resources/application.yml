@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/wizyty_domowe
     username: root
-    password: Likeaboss1!
+    password: *
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
@@ -19,8 +19,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: kubaszekh@gmail.com
-    password: kewjyllhjdhamgdr
+    username: *
+    password: *
     properties:
       mail:
         smtp:
