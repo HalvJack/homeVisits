@@ -1,3 +1,4 @@
+/*
 package com.example.wizytydomowe.Email;
 
 import java.io.File;
@@ -91,3 +92,4 @@ public class EmailServiceImpl implements EmailService {
     }
 }
 
+*/

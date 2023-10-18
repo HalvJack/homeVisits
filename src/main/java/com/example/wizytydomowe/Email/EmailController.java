@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 // Class
 public class EmailController {
 
-    @Autowired
+    //@Autowired
     private EmailService emailService;
 
     // Sending a simple Email
