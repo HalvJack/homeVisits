@@ -5,12 +5,12 @@ import {HttpClient} from "@angular/common/http";
   providedIn: 'root'
 })
 export class MainService {
-  private apiUrl = 'http://localhost:8080';
+  private apiUrl = 'http://localhost:7200';
 
   constructor(private http: HttpClient) {
   }
 
-  getData(id: number){
+  getData(){
     return this.http.get(`${this.apiUrl}/doctor/1`);
   }
 }
