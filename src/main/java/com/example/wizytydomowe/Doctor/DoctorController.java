@@ -13,22 +13,29 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.print.Doc;
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/doctor")
 public class DoctorController {
     private final DoctorService doctorService;
 
-
     @GetMapping("/{id}")
     ResponseEntity<DoctorDto> getDoctorById(@PathVariable Long id) {
         return doctorService.getDoctorById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping
+    ResponseEntity<List<DoctorDto>> findAllDoctors() {
+        List<DoctorDto> allDoctors = doctorService.findAllDoctors();
+        return ResponseEntity.ok(allDoctors);
     }
 
     @PostMapping

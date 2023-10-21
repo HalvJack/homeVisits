@@ -1,16 +1,24 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Doctor} from "../../doctor";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MainService {
-  private apiUrl = 'http://localhost:7200';
+  private doctorUrl: string;
 
   constructor(private http: HttpClient) {
+    this.doctorUrl = 'http://localhost:8080/doctor';
   }
 
-  getData(){
-    return this.http.get(`${this.apiUrl}/doctor/1`);
+  public findAllDoctors(): Observable<Doctor[]>{
+    return this.http.get<Doctor[]>(this.doctorUrl);
   }
+
+  public saveDoctor(doctor: Doctor){
+    return this.http.post<Doctor>(this.doctorUrl, doctor);
+  }
+
 }

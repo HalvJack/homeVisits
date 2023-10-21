@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-// Importuj komponenty, które będą używane w trasach
+import { DoctorFormComponent} from "./components/doctor-form/doctor-form.component";
 import { MainComponent} from "./components/main/main.component";
 
 const routes: Routes = [
-  { path: 'doctor/1', component: MainComponent }, // Strona główna
+  {path: 'doctors', component: MainComponent},
+  {path: 'addDoctor', component: DoctorFormComponent}
 ];
 
 @NgModule({

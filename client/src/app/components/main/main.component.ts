@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MainService} from "../../services/main/main.service";
+import {Doctor} from "../../doctor";
 
 @Component({
   selector: 'app-main',
@@ -7,14 +8,14 @@ import {MainService} from "../../services/main/main.service";
   styleUrls: ['./main.component.sass']
 })
 export class MainComponent implements OnInit {
-  data: any;
+  doctors!: Doctor[];
 
   constructor(private service: MainService) {
   }
 
   ngOnInit() {
-    this.service.getData().subscribe((data) => {
-      this.data = data;
+    this.service.findAllDoctors().subscribe((data) => {
+      this.doctors = data;
     });
   }
 }

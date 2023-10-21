@@ -5,7 +5,9 @@ import com.example.wizytydomowe.Patient.PatientDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -17,6 +19,13 @@ public class DoctorService {
     Optional<DoctorDto> getDoctorById(Long id) {
         return doctorRepository.findById(id)
                 .map(doctorDtoMapper::map);
+    }
+
+    List<DoctorDto> findAllDoctors() {
+        List<Doctor> doctors = doctorRepository.findAll();
+        return doctors.stream()
+                .map(doctorDtoMapper::map)
+                .collect(Collectors.toList());
     }
 
     DoctorDto saveDoctor(DoctorDto doctorDto) {
