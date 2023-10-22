@@ -14,7 +14,7 @@ export class DoctorFormComponent {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private mainService: MainService) {
-    this.doctor = new Doctor('fv', 'SDv', 'fdv','fdz', 'fdz', 'fdzd');
+    this.doctor = new Doctor(1, 'SDv', 'fdv','11111111111', 'fdz', 'kubah20000@wp.pl');
   }
 
   onSubmit(){
