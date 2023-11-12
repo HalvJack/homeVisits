@@ -1,23 +1,26 @@
 package com.example.wizytydomowe.HereApi;
 
+import lombok.Getter;
+import org.springframework.beans.factory.annotation.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.RequestEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.URI;
 @Component
 @Slf4j
+@Getter
 public class TokenRequester {
 
     private static final Logger logger = LoggerFactory.getLogger(TokenRequester.class);
 
     // Inject the RestTemplate bean
     private final RestTemplate restTemplate;
+    private final OAuthSignatureBuilder oAuthSignatureBuilder;
 
     @Value("${here.access.key.id}")
     private String accessKeyId;
@@ -28,33 +31,36 @@ public class TokenRequester {
     @Value("${here.token.endpoint.url}")
     private String tokenEndpointUrl;
 
-    // Inject the RestTemplate bean through constructor
-    public TokenRequester(RestTemplate restTemplate) {
+    public TokenRequester(RestTemplate restTemplate, OAuthSignatureBuilder oAuthSignatureBuilder) {
         this.restTemplate = restTemplate;
+        this.oAuthSignatureBuilder = oAuthSignatureBuilder;
     }
 
     public String requestAccessToken() {
-        RestTemplate restTemplate = new RestTemplate();
+
+        // Construct the headers
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
         // Construct the Authorization header
-        HttpHeaders headers = new HttpHeaders();
-        headers.setBasicAuth(accessKeyId, accessKeySecret);
+        String authorizationHeader = "OAuth ";
+        // Remove the trailing comma and space
+        authorizationHeader = authorizationHeader.substring(0, authorizationHeader.length() - 2);
+        headers.set("Authorization", authorizationHeader);
 
         // Construct the request body
-        String requestBody = "grant_type=client_credentials";
+        MultiValueMap<String, String> requestBody = new LinkedMultiValueMap<>();
+        requestBody.add("grant_type", "client_credentials");
 
         // Construct the complete request entity
-        RequestEntity<String> requestEntity = RequestEntity
-                .post(URI.create(tokenEndpointUrl))
-                .headers(headers)
-                .body(requestBody);
+        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(requestBody, headers);
 
         // Make the request and retrieve the response
-        String response = restTemplate.exchange(requestEntity, String.class).getBody();
+        ResponseEntity<String> responseEntity = restTemplate.exchange(tokenEndpointUrl, HttpMethod.POST, requestEntity, String.class);
 
         // Log the response instead of printing to System.out
+        String response = responseEntity.getBody();
         logger.info("Token response: {}", response);
-
 
         return response; // Return the access token or handle it as needed
     }

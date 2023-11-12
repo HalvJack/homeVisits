@@ -1,6 +1,8 @@
 spring:
   #  liquibase:
   #    change-log: classpath:/db/changelog/master.xml
+  config:
+    import: "file:C:/Users/Jakub Hałucha/.here/credentials.properties"
   datasource:
     url: jdbc:h2:mem:test
     username: sa
@@ -12,14 +14,6 @@ spring:
     defer-datasource-initialization: true
   thymeleaf:
     cache: false
-here:
-  access:
-    key:
-      id: your-access-key-id
-      secret: your-access-key-secret
-  token:
-    endpoint:
-      url: https://account.api.here.com/oauth2/token
-logging:
-  level:
-    root: info
+  logging:
+    level:
+      root: info

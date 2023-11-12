@@ -37,6 +37,11 @@ public class OAuthSignatureBuilder {
         parameters.put("oauth_signature_method", HMAC_SHA256);
         parameters.put("oauth_timestamp", String.valueOf(timestamp));
         parameters.put("oauth_version", "1.0");
+
+        buildSignatureBaseString();
+    }
+    public Map<String, String> getOAuthParameters() {
+        return new TreeMap<>(parameters); // Return a copy to prevent modification outside the class
     }
 
     public String buildSignatureBaseString() {
@@ -63,8 +68,7 @@ public class OAuthSignatureBuilder {
         SecureRandom secureRandom = new SecureRandom();
         byte[] randomBytes = new byte[32]; // You can adjust the length as needed for your security requirements
         secureRandom.nextBytes(randomBytes);
-        String encodedNonce = Base64.getUrlEncoder().encodeToString(randomBytes);
-        return encodedNonce;
+        return Base64.getUrlEncoder().encodeToString(randomBytes);
     }
 }
 
