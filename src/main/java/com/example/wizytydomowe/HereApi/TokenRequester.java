@@ -1,6 +1,7 @@
 package com.example.wizytydomowe.HereApi;
 
 import lombok.Getter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Map;
 
 @Component
 @Slf4j
@@ -22,11 +25,6 @@ public class TokenRequester {
     private final RestTemplate restTemplate;
     private final OAuthSignatureBuilder oAuthSignatureBuilder;
 
-    @Value("${here.access.key.id}")
-    private String accessKeyId;
-
-    @Value("${here.access.key.secret}")
-    private String accessKeySecret;
 
     @Value("${here.token.endpoint.url}")
     private String tokenEndpointUrl;
@@ -37,17 +35,19 @@ public class TokenRequester {
     }
 
     public String requestAccessToken() {
-
         // Construct the headers
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
         // Construct the Authorization header
-        String authorizationHeader = "OAuth ";
-        // Remove the trailing comma and space
-        authorizationHeader = authorizationHeader.substring(0, authorizationHeader.length() - 2);
+        String authorizationHeader = "OAuth";
         headers.set("Authorization", authorizationHeader);
-
+        for(Map.Entry<String, String> entry : oAuthSignatureBuilder.getOAuthParameters().entrySet()){
+            headers.add(entry.getKey(), entry.getValue());
+        }
+        headers.remove("grant_type");
+        headers.add("oauth_signature", oAuthSignatureBuilder.getSignature());
+        headers.add("authorization_header", oAuthSignatureBuilder.getAuthorizationHeader());
         // Construct the request body
         MultiValueMap<String, String> requestBody = new LinkedMultiValueMap<>();
         requestBody.add("grant_type", "client_credentials");

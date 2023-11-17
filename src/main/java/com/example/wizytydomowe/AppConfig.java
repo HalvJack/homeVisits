@@ -14,7 +14,7 @@ public class AppConfig {
         return new RestTemplate();
     }
     @Bean
-    public OAuthSignatureBuilder oauthSignatureBuilder(@Value("here.user.id") String accessKeyId) {
-        return new OAuthSignatureBuilder(accessKeyId);
+    public OAuthSignatureBuilder oauthSignatureBuilder(@Value("${here.access.key.id}") String accessKeyId, @Value("${here.access.key.secret}") String secretKey) {
+        return new OAuthSignatureBuilder(accessKeyId, secretKey);
     }
 }
