@@ -46,8 +46,9 @@ public class TokenRequester {
             headers.add(entry.getKey(), entry.getValue());
         }
         headers.remove("grant_type");
+        headers.remove("oauth_timestamp");
         headers.add("oauth_signature", oAuthSignatureBuilder.getSignature());
-        headers.add("authorization_header", oAuthSignatureBuilder.getAuthorizationHeader());
+        //headers.add("authorization_header", oAuthSignatureBuilder.getAuthorizationHeader());
         // Construct the request body
         MultiValueMap<String, String> requestBody = new LinkedMultiValueMap<>();
         requestBody.add("grant_type", "client_credentials");
