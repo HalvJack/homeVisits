@@ -1,5 +1,6 @@
 package com.example.wizytydomowe.HereApi;
 
+import com.here.account.oauth2.HereAccessTokenProvider;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -57,13 +58,16 @@ public class TokenRequester {
         HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(requestBody, headers);
 
         // Make the request and retrieve the response
-        ResponseEntity<String> responseEntity = restTemplate.exchange(tokenEndpointUrl, HttpMethod.POST, requestEntity, String.class);
+        //ResponseEntity<String> responseEntity = restTemplate.exchange(tokenEndpointUrl, HttpMethod.POST, requestEntity, String.class);
 
         // Log the response instead of printing to System.out
-        String response = responseEntity.getBody();
-        logger.info("Token response: {}", response);
+        //String response = responseEntity.getBody();
+        //logger.info("Token response: {}", response);
+        HereAccessTokenProvider accessTokens = HereAccessTokenProvider.builder().build();
+        String accessToken = accessTokens.getAccessToken();
+        logger.info("Token response: {}", accessToken);
 
-        return response; // Return the access token or handle it as needed
+        return accessToken; // Return the access token or handle it as needed
     }
 }
 
