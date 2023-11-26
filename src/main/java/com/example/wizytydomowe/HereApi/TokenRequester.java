@@ -26,6 +26,8 @@ public class TokenRequester {
     private final RestTemplate restTemplate;
     private final OAuthSignatureBuilder oAuthSignatureBuilder;
 
+    private String accessToken;
+
 
     @Value("${here.token.endpoint.url}")
     private String tokenEndpointUrl;
@@ -64,7 +66,7 @@ public class TokenRequester {
         //String response = responseEntity.getBody();
         //logger.info("Token response: {}", response);
         HereAccessTokenProvider accessTokens = HereAccessTokenProvider.builder().build();
-        String accessToken = accessTokens.getAccessToken();
+        accessToken = accessTokens.getAccessToken();
         logger.info("Token response: {}", accessToken);
 
         return accessToken; // Return the access token or handle it as needed
