@@ -7,18 +7,21 @@ import {AppComponent} from './app.component';
 import {DoctorFormComponent} from './components/doctor-form/doctor-form.component';
 import {MainService} from "./services/main/main.service";
 import {MainComponent} from "./components/main/main.component";
+import { MaptileComponent } from './maptile/maptile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DoctorFormComponent,
-    MainComponent
+    MainComponent,
+    MaptileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [MainService],
   bootstrap: [AppComponent]
