@@ -8,13 +8,15 @@ import {DoctorFormComponent} from './components/doctor-form/doctor-form.componen
 import {MainService} from "./services/main/main.service";
 import {MainComponent} from "./components/main/main.component";
 import { MaptileComponent } from './maptile/maptile.component';
+import { JsmapComponent } from './jsmap/jsmap.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DoctorFormComponent,
     MainComponent,
-    MaptileComponent
+    MaptileComponent,
+    JsmapComponent
   ],
   imports: [
     BrowserModule,
