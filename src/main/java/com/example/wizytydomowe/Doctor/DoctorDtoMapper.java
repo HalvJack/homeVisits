@@ -13,6 +13,8 @@ public class DoctorDtoMapper {
         doctorDto.setPhoneNumber(doctor.getPhoneNumber());
         doctorDto.setSpecialization(doctor.getSpecialization());
         doctorDto.setEmail(doctor.getEmail());
+        doctorDto.setLatitude(doctor.getLatitude());
+        doctorDto.setLongitude(doctor.getLongitude());
         return doctorDto;
     }
 
@@ -24,6 +26,8 @@ public class DoctorDtoMapper {
         doctor.setEmail(doctorDto.getEmail());
         doctor.setPhoneNumber(doctorDto.getPhoneNumber());
         doctor.setSpecialization(doctorDto.getSpecialization());
+        doctor.setLatitude(doctorDto.getLatitude());
+        doctor.setLongitude(doctorDto.getLongitude());
         return doctor;
     }
 }

@@ -20,4 +20,6 @@ public class Doctor {
     private String specialization;
     @Email
     private String email;
+    private double latitude;
+    private double longitude;
 }
