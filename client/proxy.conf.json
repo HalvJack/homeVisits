@@ -1,0 +1,7 @@
+{
+  "/maptiles": {
+    "target": "http://localhost:8080/maptiles",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

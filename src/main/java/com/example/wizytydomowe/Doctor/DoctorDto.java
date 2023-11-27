@@ -10,5 +10,6 @@ public class DoctorDto {
     private String phoneNumber;
     private String specialization;
     private String email;
-
+    private double latitude;
+    private double longitude;
 }
