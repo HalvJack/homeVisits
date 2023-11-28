@@ -21,5 +21,13 @@
 <!--    </div>-->
 <!--  </div>-->
 <!--</div>-->
-<app-jsmap></app-jsmap>
+<app-jsmap
+  [zoom]="zoom"
+  [lat]="lat"
+  [lng]="lng"
+></app-jsmap>
+<app-mapposition
+  (notify)="handleInputChange($event)"
+></app-mapposition>
+
 
