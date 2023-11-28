@@ -32,4 +32,14 @@ export class AppComponent {
       }
     }
   }
+
+  handleMapChange(event: H.map.ChangeEvent) {
+    if (event.newValue.lookAt) {
+      const lookAt = event.newValue.lookAt;
+      this.zoom = lookAt.zoom;
+      this.lat = lookAt.position.lat;
+      this.lng = lookAt.position.lng;
+    }
+  }
+
 }

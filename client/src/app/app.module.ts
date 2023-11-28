@@ -9,7 +9,7 @@ import {MainService} from "./services/main/main.service";
 import {MainComponent} from "./components/main/main.component";
 import { MaptileComponent } from './maptile/maptile.component';
 import { JsmapComponent } from './jsmap/jsmap.component';
-import { MapposistionComponent } from './mapposition/mapposition.component';
+import { MappositionComponent } from './mapposition/mapposition.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { MapposistionComponent } from './mapposition/mapposition.component';
     MainComponent,
     MaptileComponent,
     JsmapComponent,
-    MapposistionComponent
+    MappositionComponent
   ],
   imports: [
     BrowserModule,
