@@ -7,6 +7,9 @@ import onResize from 'simple-element-resize-detector';
   styleUrls: ['./jsmap.component.sass']
 })
 export class JsmapComponent {
+  @Input() public zoom = 2;
+  @Input() public lat = 0;
+  @Input() public lng = 0;
   private map?: H.Map;
 
   @ViewChild('map') mapDiv?: ElementRef;

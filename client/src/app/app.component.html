@@ -21,17 +21,36 @@
 <!--    </div>-->
 <!--  </div>-->
 <!--</div>-->
-<app-jsmap
-  [zoom]="zoom"
-  [lat]="lat"
-  [lng]="lng"
-  (notify)="handleMapChange($event)"
-></app-jsmap>
-<app-mapposition
-  [zoom]="zoom"
-  [lat]="lat"
-  [lng]="lng"
-  (notify)="handleInputChange($event)"
-></app-mapposition>
+<!-- app.component.html -->
+<header>
+  <h1>System rezerwacji wizyt domowych</h1>
+  <nav>
+    <ul>
+      <a routerLink="/home" class="custom-link">Strona główna</a>
+      <li><a routerLink="/Informacje dla pacjenta" class="custom-link">Informacje dla pacjenta</a></li>
+      <li><a routerLink="/O nas" class="custom-link">Kontakt</a></li>
+      <li><a routerLink="/Kontakt" class="custom-link">O nas</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <app-jsmap
+    [zoom]="zoom"
+    [lat]="lat"
+    [lng]="lng"
+    (notify)="handleMapChange($event)"
+  ></app-jsmap>
+  <app-mapposition
+    [zoom]="zoom"
+    [lat]="lat"
+    [lng]="lng"
+    (notify)="handleInputChange($event)"
+  ></app-mapposition>
+</main>
+<footer>
+  <p>&copy; Wszelkie prawa zastrzeżone</p>
+</footer>
+
+
 
 

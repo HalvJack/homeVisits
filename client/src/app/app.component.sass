@@ -1,99 +1,68 @@
-// Table Styles
-table.table
-  width: 100%
-  border-collapse: collapse
-  margin-top: 15px
+// Definicje kolorów
+$color-blue: #3395ff
+$color-light-blue: #003d80
+$color-white: #fff
+$color-off-white: #f8f9fa
 
-  th, td
-    padding: 10px
-    text-align: left
-
-
-  thead
-    background-color: #72ba40 // Dark background color for table header
-    color: white // Text color for table header
-
-    th
-      font-weight: bold
-
-
-
-
-// Form Styles
-form
-  margin: 15px 0
-
-  .form-group
-    margin-bottom: 15px
-
-    // Error Messages
-    .alert.alert-danger
-      color: #721c24
-      background-color: #f8d7da
-      border: 1px solid #f5c6cb
-      border-radius: 0.25rem
-      padding: 0.75rem 1.25rem
-      margin-top: 5px
-
-
-
-  // Submit Butto
-  button.btn.btn-info
-    background-color: #17a2b8
-    color: white
-    border: none
-    padding: 10px 20px
-    cursor: pointer
-
-    &[disabled]
-      background-color: #ccc
-      cursor: not-allowed
-
-
-
-
-// Title Styles
-.card-title
-  color: white
-
-
-// Navigation Styles
-ul.list-inline
-  list-style: none
+body
+  font-family: Arial, sans-serif
+  background-color: $color-light-blue
+  color: $color-blue
+  margin: 100px
   padding: 0
-  margin: 0
 
-  li
-    display: inline
-    margin-right: 10px
+  header
+    background-color: $color-blue
+    color: $color-blue
+    text-align: center
+    padding: 10px 0
 
-    // Buttons in Navigation
-    .btn.btn-info
-      background-color: #17a2b8
-      color: white
-      text-decoration: none
-      padding: 10px 20px
-      border: none
-      cursor: pointer
+    h1
+      margin: 0
+      text-align: center
+      margin-left: 500px
 
-      &:hover
-        background-color: #138496 // Hover color
+    nav ul
+      list-style: none
+      padding: 0
+      display: flex
+      justify-content: center
 
+      li
+        background-color: $color-light-blue
+        margin: 0 10px
+        border-radius: 5px
+        padding: 5px 10px
 
+        a
+          color: $color-white
+          text-decoration: none
 
-
-// Background for the entire container
-.container
-  background-color: #72ba40
+main
+  background-color: $color-white
   padding: 20px
-  border-radius: 10px
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
 
-  // Card Styles
-  .card
-    background-color: #ffffff
-    border: 1px solid #ffffff
-    border-radius: 5px
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1)
+footer
+  background-color: $color-blue
+  color: $color-white
+  text-align: center
+  padding: 10px 0
+  position: absolute
+  bottom: 0
+  width: 100%
+  position: fixed
+
+.custom-link
+  color: $color-light-blue
+  text-decoration: none
+
+.custom-link:hover
+  color: $color-blue
+
+
+
+
+
+
 
 
