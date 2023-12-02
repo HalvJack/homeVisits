@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Doctor} from "../../doctor";
+import {Doctor} from "../doctor-form/doctor";
 import {map, Observable} from "rxjs";
 import {switchMap} from "rxjs";
 
