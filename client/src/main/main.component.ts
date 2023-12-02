@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {MainService} from "../../services/main/main.service";
-import {Doctor} from "../../doctor";
+import {MainService} from "./main.service";
+import {Doctor} from "../doctor-form/doctor";
 
 @Component({
   selector: 'app-main',

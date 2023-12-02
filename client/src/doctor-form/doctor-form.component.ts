@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {MainService} from "../../services/main/main.service";
-import {Doctor} from "../../doctor";
+import {MainService} from "../main/main.service";
+import {Doctor} from "./doctor";
 
 @Component({
   selector: 'app-doctor-form',

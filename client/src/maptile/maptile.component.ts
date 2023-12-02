@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
-import {MaptileService} from "../services/maptile/maptile.service";
+import {MaptileService} from "./maptile.service";
 
 @Component({
   selector: 'app-maptile',

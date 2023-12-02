@@ -4,12 +4,12 @@ import {AppRoutingModule} from './app-routing.module';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {AppComponent} from './app.component';
-import {DoctorFormComponent} from './components/doctor-form/doctor-form.component';
-import {MainService} from "./services/main/main.service";
-import {MainComponent} from "./components/main/main.component";
-import { MaptileComponent } from './maptile/maptile.component';
-import { JsmapComponent } from './jsmap/jsmap.component';
-import { MappositionComponent } from './mapposition/mapposition.component';
+import {DoctorFormComponent} from '../doctor-form/doctor-form.component';
+import {MainService} from "../main/main.service";
+import {MainComponent} from "../main/main.component";
+import { MaptileComponent } from '../maptile/maptile.component';
+import { JsmapComponent } from '../jsmap/jsmap.component';
+import { MappositionComponent } from '../mapposition/mapposition.component';
 
 @NgModule({
   declarations: [
