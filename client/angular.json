@@ -19,7 +19,7 @@
           "options": {
             "outputPath": "dist/client",
             "index": "src/index.html",
-            "main": "src/main.ts",
+            "main": "src/main/main.ts",
             "polyfills": [
               "zone.js"
             ],
