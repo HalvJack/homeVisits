@@ -17,7 +17,7 @@ export class JsmapComponent {
   ngAfterViewInit(): void{
     if(!this.map && this.mapDiv){
       const platform = new H.service.Platform({
-        apikey: 'eyJhbGciOiJSUzUxMiIsImN0eSI6IkpXVCIsImlzcyI6IkhFUkUiLCJhaWQiOiJBZFphMVlUY2xWMWdaaUdmNFYxMSIsImlhdCI6MTcwMTIwMDE1MywiZXhwIjoxNzAxMjg2NTUzLCJraWQiOiJqMSJ9'
+        apikey: 'eyJhbGciOiJSUzUxMiIsImN0eSI6IkpXVCIsImlzcyI6IkhFUkUiLCJhaWQiOiJBZFphMVlUY2xWMWdaaUdmNFYxMSIsImlhdCI6MTcwMTY5MzM3NiwiZXhwIjoxNzAxNzc5Nzc2LCJraWQiOiJqMSJ9'
       });
       const layers = platform.createDefaultLayers();
       const map = new H.Map(
@@ -25,8 +25,8 @@ export class JsmapComponent {
         (layers as any).vector.normal.map,
         {
           pixelRatio: window.devicePixelRatio,
-          center: {lat: 0, lng: 0},
-          zoom: 2,
+          center: {lat: 50.05880840389361, lng: 19.938420798403843},
+          zoom: 10,
         },
       );
       onResize(this.mapDiv.nativeElement, () =>{

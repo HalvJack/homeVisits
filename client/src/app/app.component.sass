@@ -1,66 +1,67 @@
 // Definicje kolorów
-$color-blue: #3395ff
-$color-light-blue: #003d80
+$color-blue: #003d80
+$color-light-blue: #3395ff
 $color-white: #fff
 $color-off-white: #f8f9fa
 
 body
   font-family: Arial, sans-serif
-  background-color: $color-light-blue
-  color: $color-blue
   margin: 0
   padding: 0
-
-  header
-    background-color: $color-blue
-    color: $color-blue
-    text-align: center
-    padding: 10px 0
-
-    h1
-      margin: 0
-      text-align: center
-      font-size: 50px
-      letter-spacing: 5px
-
-    nav ul
-      list-style: none
-      padding: 0
-      display: flex
-      justify-content: center
-      text-decoration: none
-
-      li
-        background-color: $color-light-blue
-        margin: 0 10px
-        border-radius: 5px
-        padding: 5px 10px
-        text-decoration: none
-
-        a
-          color: $color-white
-          text-decoration: none
-
-main
-  background-color: $color-white
-  padding: 20px
-
-footer
   background-color: $color-blue
+  color: $color-off-white
+#container
+  width: 100%
+  margin-left: auto
+  margin-right: auto
+
+header
+  background-color: $color-light-blue
+  color: $color-blue
+  text-align: center
+
+h1
+  margin: 0
+  text-align: center
+  font-size: 50px
+  letter-spacing: 5px
+  text-shadow: 4px 4px 8px #000000
+  margin-bottom: 20px
+
+nav ul
+  list-style: none
+  padding: 0
+  display: flex
+  justify-content: center
+  text-decoration: none
+  font-size: 24px
+
+li
+  background-color: #17a2b8
+  margin: 0 10px
+  border-radius: 5px
+  padding: 5px 10px
+  text-decoration: none
+  border: 5px dotted #138496
+a
   color: $color-white
+  text-decoration: none
+.footer
   text-align: center
   padding: 10px 0
-  position: absolute
   bottom: 0
   width: 100%
-  position: fixed
+  position: absolute
 
 .custom-link
-  color: $color-light-blue
   text-decoration: none
 
 .custom-link:hover
   color: $color-blue
+#nav
+  border: 1px solid #ffffff
+  text-align: center
+  padding: 20px 0
 
 
 
