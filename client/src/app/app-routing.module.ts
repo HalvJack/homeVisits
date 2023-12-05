@@ -8,6 +8,7 @@ const routes: Routes = [
   {path: 'doctors', component: MainComponent},
   {path: 'addDoctor', component: DoctorFormComponent},
   {path: 'maptiles', component: MaptileComponent}
+  {path: ''}
 ];
 
 @NgModule({
