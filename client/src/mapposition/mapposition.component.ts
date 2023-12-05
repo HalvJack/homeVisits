@@ -1,5 +1,7 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
-import { HttpClient} from "@angular/common/http";
+import {ActivatedRoute, Router} from "@angular/router";
+import {LocationService} from "./location.service";
+import {Location} from "./location"
 
 @Component({
   selector: 'app-mapposition',
@@ -8,7 +10,12 @@ import { HttpClient} from "@angular/common/http";
 })
 export class MappositionComponent {
 
-  constructor(private http: HttpClient) {}
+  location: Location;
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private locationService: LocationService) {
+    this.location = new Location(1,1,1);
+  }
 
   @Input() public zoom = 2;
   @Input() public lat = 0;
@@ -17,15 +24,10 @@ export class MappositionComponent {
   @Output() notify = new EventEmitter();
 
   onSubmit(event: Event) {
-    event.preventDefault();
-    const form = event.target as HTMLFormElement;
-    const formData = new FormData(form);
-    const data = {};
-    formData.forEach((value, key) => (data[key] = value));
+    this.locationService.saveLocation(this.location).subscribe(result => this.goToLocation());
+  }
 
-    this.http.post('YOUR_BACKEND_ENDPOINT', data).subscribe(
-      response => console.log('Success:', response),
-      error => console.error('Error:', error)
-    );
+  private goToLocation(){
+    this.router.navigate(['/location'])
   }
 }
