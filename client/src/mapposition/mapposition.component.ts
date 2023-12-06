@@ -14,7 +14,7 @@ export class MappositionComponent {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private locationService: LocationService) {
-    this.location = new Location(1,1,1);
+    this.location = new Location(1,1,1,Importance.MINOR);
   }
 
   @Input() public zoom = 2;

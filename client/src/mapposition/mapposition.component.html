@@ -26,5 +26,15 @@
       [value]="lng"
     />
   </div>
+  <div>
+    Wybierz opcję pilności wizyty:
+    <select name="option">
+      <option value="Minor">Niepilna</option>
+      <option value="Medium">Średniopilna</option>
+      <option value="Urgent">Pilna</option>
+      [value]="importance"
+      type="Importance"
+    </select>
+  </div>
   <button type="submit">Submit</button>
 </form>

@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Location} from "./location";
-import {map, Observable} from "rxjs";
-import {switchMap} from "rxjs";
+import {switchMap, Observable} from "rxjs";
 import {Doctor} from "../doctor-form/doctor";
 
 @Injectable({
@@ -28,7 +27,8 @@ export class LocationService {
       switchMap(() => {
         return this.availableDoctorsList();
       })
-    )}
+    )
+  }
 
 
 }
