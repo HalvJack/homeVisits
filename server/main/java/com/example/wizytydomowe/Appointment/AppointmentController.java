@@ -11,7 +11,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -21,6 +20,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/appointment")
 public class AppointmentController {
     private final AppointmentService appointmentService;
+
 
     @GetMapping("{id}")
     ResponseEntity<AppointmentDto> getAppointmentById(@PathVariable Long id) {

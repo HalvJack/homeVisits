@@ -1,9 +1,5 @@
 package com.example.wizytydomowe.Appointment;
 
-import com.example.wizytydomowe.Doctor.DoctorDtoMapper;
-import com.example.wizytydomowe.Patient.Patient;
-import com.example.wizytydomowe.Patient.PatientDto;
-import com.example.wizytydomowe.Patient.PatientDtoMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -29,6 +25,8 @@ public class AppointmentService {
         Appointment savedAppointment = appointmentRepository.save(appointment);
         return appointmentDtoMapper.map(savedAppointment);
     }
+
+
 
     void deleteAppointment(Long id) {
         appointmentRepository.deleteById(id);

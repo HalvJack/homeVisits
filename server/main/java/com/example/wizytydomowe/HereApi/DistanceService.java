@@ -1,14 +1,16 @@
 package com.example.wizytydomowe.HereApi;
 
-import com.example.wizytydomowe.Doctor.Doctor;
+import com.example.wizytydomowe.Doctor.DoctorDto;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DistanceService {
     // Earth radius in kilometers
     private static final double EARTH_RADIUS_KM = 6371.0;
 
-    public double calculateDistance(Doctor doctor, double pointLatitude, double pointLongitude) {
-        double officeLatitude = Math.toRadians(doctor.getLatitude());
-        double officeLongitude = Math.toRadians(doctor.getLongitude());
+    public double calculateDistance(DoctorDto doctorDto, double pointLatitude, double pointLongitude) {
+        double officeLatitude = Math.toRadians(doctorDto.getLatitude());
+        double officeLongitude = Math.toRadians(doctorDto.getLongitude());
         pointLatitude = Math.toRadians(pointLatitude);
         pointLongitude = Math.toRadians(pointLongitude);
 

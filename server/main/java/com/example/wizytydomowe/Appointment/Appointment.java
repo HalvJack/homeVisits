@@ -7,7 +7,6 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Future;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity

@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {LocationService} from "./location.service";
 import {Location} from "./location"
+import {Importance} from "./importance";
 
 @Component({
   selector: 'app-mapposition',
@@ -14,7 +15,7 @@ export class MappositionComponent {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private locationService: LocationService) {
-    this.location = new Location(1,1,1);
+    this.location = new Location(1,1,1,Importance.MINOR, "dermatolog");
   }
 
   @Input() public zoom = 2;
