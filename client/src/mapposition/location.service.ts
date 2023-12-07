@@ -19,7 +19,7 @@ export class LocationService {
   }
 
   public availableDoctorsList(): Observable<Doctor[]> {
-    return this.http.get<Doctor[]>(this.availableDoctors);
+    return this.http.get<Doctor[]>(this.locationUrl);
   }
 
   public saveLocation(location: Location): Observable<Doctor[]> {
@@ -29,6 +29,5 @@ export class LocationService {
       })
     )
   }
-
 
 }

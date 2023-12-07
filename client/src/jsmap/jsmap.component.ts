@@ -17,7 +17,7 @@ export class JsmapComponent {
   ngAfterViewInit(): void{
     if(!this.map && this.mapDiv){
       const platform = new H.service.Platform({
-        apikey: 'eyJhbGciOiJSUzUxMiIsImN0eSI6IkpXVCIsImlzcyI6IkhFUkUiLCJhaWQiOiJBZFphMVlUY2xWMWdaaUdmNFYxMSIsImlhdCI6MTcwMTY5MzM3NiwiZXhwIjoxNzAxNzc5Nzc2LCJraWQiOiJqMSJ9'
+        apikey: 'eyJhbGciOiJSUzUxMiIsImN0eSI6IkpXVCIsImlzcyI6IkhFUkUiLCJhaWQiOiJBZFphMVlUY2xWMWdaaUdmNFYxMSIsImlhdCI6MTcwMTk3NzU1NCwiZXhwIjoxNzAyMDYzOTU0LCJraWQiOiJqMSJ9.ZXlKaGJHY2lPaUprYVhJaUxDSmxibU1pT2lKQk1qVTJRMEpETFVoVE5URXlJbjAuLldHelJ0VHQ3Q1ZjeTA3eTdwSS1sVkEuN2JVb1B1NURlU2NXazcwTDRWbUZLOEV4NEREQWtBQ25janhlc25TTTIySXY4dWEtZEV3WlpIUF9hT1d1OWt1NmktbjFic2VKU0lXdGEzc2tTM3o3aFJydGpDdXp6U2xWSmpjclVkRklzbTVIRXRxSER6YUVpTkp5SlUzT3hGemxpSzdpNi1oLWFGTzFDN1hKand3d1ZQQ0NfckYxeG5aNW45dWJZNXg1NjU4LnNxSHNjTUhvczl3TlBBR1l6OXd1dGxHSzJ2d3RKN1BuSGNtdlRwaS1UU00'
       });
       const layers = platform.createDefaultLayers();
       const map = new H.Map(
