@@ -52,3 +52,19 @@
   </div>
   <button type="submit">Submit</button>
 </form>
+<h3>Available Doctors:</h3>
+
+<form (submit)="onSubmitDoctorSelection()">
+  <ul>
+    <li *ngFor="let doctor of doctors">
+      <input type="radio" name="selectedDoctor" [(ngModel)]="selectedDoctor" [value]="doctor">
+      {{ doctor.name }} - {{ doctor.specialization }}
+    </li>
+    <!-- Default Doctor Option -->
+    <li>
+      <input type="radio" name="selectedDoctor" [(ngModel)]="selectedDoctor" [value]="defaultDoctor">
+      {{ defaultDoctor.name }} - {{ defaultDoctor.specialization }}
+    </li>
+  </ul>
+  <button type="submit">Choose Doctor</button>
+</form>
