@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import {Patient} from "./patient";
+import {ActivatedRoute, Router} from "@angular/router";
+import {PatientService} from "./patient.service";
 
 @Component({
   selector: 'app-root',
@@ -7,8 +10,21 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'jsapi-angular';
+  patient: Patient;
 
-  constructor() {
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private patientService: PatientService) {
+    this.patient = new Patient(1, 'Edi', 'Mother', '535130943', '93519933854',
+      'mother2000@wp.pl', 'krakow ul. mickiewicza', '13.04.2014', 'minor',
+      'diabetologia', 'dolega mi bol tarczycy i brak insuliny');
+  }
+
+  onSubmit() {
+    console.log(this.patient);
+    this.patientService.savePatient(this.patient);
+  }
+  /*constructor() {
     this.zoom = 2;
     this.lat = 0;
     this.lng = 0;
@@ -40,6 +56,6 @@ export class AppComponent {
       this.lat = lookAt.position.lat;
       this.lng = lookAt.position.lng;
     }
-  }
+  }*/
 
 }
