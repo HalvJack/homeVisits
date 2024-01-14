@@ -1,17 +1,26 @@
 package com.example.wizytydomowe.Appointment;
 
+import com.example.wizytydomowe.Patient.PatientDtoMapper;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AppointmentDtoMapper {
+
+    private final PatientDtoMapper patientDtoMapper;
+
+    public AppointmentDtoMapper(PatientDtoMapper patientDtoMapper){
+        this.patientDtoMapper = patientDtoMapper;
+    }
     AppointmentDto map(Appointment appointment) {
         AppointmentDto appointmentDto = new AppointmentDto();
         appointmentDto.setId(appointment.getId());
         appointmentDto.setDate(appointment.getDate());
         appointmentDto.setImportance(appointment.getImportance());
+        appointmentDto.setComments(appointment.getComments());
+        appointmentDto.setSpecialization(appointmentDto.getSpecialization());
         appointmentDto.setPrice(appointment.getPrice());
+        appointmentDto.setPatient(patientDtoMapper.map(appointment.getPatient()));
         appointmentDto.setDoctor(appointment.getDoctor());
-        appointmentDto.setPatient(appointment.getPatient());
         return appointmentDto;
     }
 
@@ -21,7 +30,7 @@ public class AppointmentDtoMapper {
         appointment.setDate(appointmentDto.getDate());
         appointment.setImportance(appointmentDto.getImportance());
         appointment.setPrice(appointmentDto.getPrice());
-        appointment.setPatient(appointmentDto.getPatient());
+        appointment.setPatient(patientDtoMapper.map(appointmentDto.getPatient()));
         appointment.setDoctor(appointmentDto.getDoctor());
         return appointment;
     }

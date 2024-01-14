@@ -1,3 +1,5 @@
+import {Address} from "./address";
+
 export class Patient {
   id: number = 1;
   name: string = '';
@@ -5,16 +7,12 @@ export class Patient {
   phoneNumber: string= '';
   pesel: string = '';
   email: string = '';
-  address: string = '';
+  address: Address;
   birthDate: string = '';
-  importance: string = '';
-  specialization: string = '';
-  comments: string = '';
 
 
   constructor(id: number, name: string, surname: string, phoneNumber: string, pesel: string,
-              email: string, address: string, birthDate: string, importance: string, specialization: string,
-              comments: string) {
+              email: string, address: Address, birthDate: string) {
     this.id = id;
     this.name = name;
     this.surname = surname;
@@ -23,9 +21,6 @@ export class Patient {
     this.email = email;
     this.address = address;
     this.birthDate = birthDate;
-    this.importance = importance;
-    this.specialization = specialization;
-    this.comments = comments;
   }
 
 }

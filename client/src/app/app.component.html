@@ -1,79 +1,72 @@
-<!--<div id="container">
-  <header>
-    <h1>System rezerwacji wizyt domowych</h1>
-    <nav>
-      <div id="nav">
-          <ul>
-            <li><a routerLink="/" class="custom-link">Strona główna</a></li>
-            <li><a routerLink="/Informacje dla pacjenta" class="custom-link">Informacje dla pacjenta</a></li>
-            <li><a routerLink="/O nas" class="custom-link">Kontakt</a></li>
-            <li><a routerLink="/Kontakt" class="custom-link">O nas</a></li>
-          </ul>
-      </div>
-    </nav>
-  </header>
-  <main>
-    <app-jsmap
-      [zoom]="zoom"
-      [lat]="lat"
-      [lng]="lng"
-      (notify)="handleMapChange($event)"
-    ></app-jsmap>
-    <app-mapposition
-      [zoom]="zoom"
-      [lat]="lat"
-      [lng]="lng"
-      (notify)="handleInputChange($event)"
-    ></app-mapposition>
-  </main>
-  <footer>
-    <p>&copy; Wszelkie prawa zastrzeżone</p>
-  </footer>
-</div>-->
 <mat-card>
   <mat-card-title>Home Visits</mat-card-title>
   <mat-card-content>
     <form (ngSubmit)="onSubmit()" #patientForm="ngForm">
       <mat-form-field>
-        <mat-label for="id">Name</mat-label>
-        <input type="text" [(ngModel)]="patient.name"
+        <mat-label>Name</mat-label>
+        <input type="text" [(ngModel)]="appointment.patient.name"
                name="name"
                matInput placeholder="Enter your name">
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Surname</mat-label>
-        <input type="text" [(ngModel)]="patient.surname"
+        <input type="text" [(ngModel)]="appointment.patient.surname"
                name="surname"
                matInput placeholder="Enter your surname">
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Phone Number</mat-label>
-        <input type="text" [(ngModel)]="patient.phoneNumber"
+        <input type="text" [(ngModel)]="appointment.patient.phoneNumber"
                name="phoneNumber"
                matInput placeholder="Enter your phone number">
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>PESEL</mat-label>
-        <input type="text" [(ngModel)]="patient.pesel"
+        <input type="text" [(ngModel)]="appointment.patient.pesel"
                name="pesel"
                matInput placeholder="Enter your PESEL">
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Email</mat-label>
-        <input type="text" [(ngModel)]="patient.email"
+        <input type="text" [(ngModel)]="appointment.patient.email"
                name="email"
                matInput placeholder="Enter your email" type="email">
       </mat-form-field>
+      <mat-label>Address</mat-label>
+      <mat-form-field>
+        <mat-label>City</mat-label>
+        <input type="text" [(ngModel)]="patient.address.city"
+               name="city"
+               matInput placeholder="Enter your city">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Zip Code</mat-label>
+        <input type="text" [(ngModel)]="patient.address.zipCode"
+               name="zipCode"
+               matInput placeholder="Enter your zip code">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Street</mat-label>
+        <input type="text" [(ngModel)]="patient.address.street"
+               name="street"
+               matInput placeholder="Enter your street">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>House Number</mat-label>
+        <input type="number" [(ngModel)]="patient.address.houseNumber"
+               name="houseNumber"
+               matInput placeholder="Enter your house number">
+      </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Address</mat-label>
-        <input type="text" [(ngModel)]="patient.address"
-               name="address"
-               matInput placeholder="Enter your address">
+        <mat-label>Flat Number</mat-label>
+        <input type="number" [(ngModel)]="patient.address.flatNumber"
+               name="flatNumber"
+               matInput placeholder="Enter your flat number">
       </mat-form-field>
 
       <!--<input matInput type="date" [(ngModel)]="patient.birthDate"
@@ -86,16 +79,16 @@
 
       <mat-form-field>
         <mat-label>Importance of Visit</mat-label>
-        <mat-select [(ngModel)]="patient.importance" name="importance">
-          <mat-option value="minor">Minor</mat-option>
-          <mat-option value="medium">Medium</mat-option>
-          <mat-option value="strict">Strict</mat-option>
+        <mat-select [(ngModel)]="appointment.importance" name="importance">
+          <mat-option value="MINOR">Minor</mat-option>
+          <mat-option value="MEDIUM">Medium</mat-option>
+          <mat-option value="URGENT">Urgent</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Doctor's Specialization</mat-label>
-        <mat-select [(ngModel)]="patient.specialization" name="specialization">
+        <mat-select [(ngModel)]="appointment.specialization" name="specialization">
           <mat-option value="Anestezjologia">Anestezjologia</mat-option>
           <mat-option value="Dermatologia i wenerologia">Dermatologia i wenerologia</mat-option>
           <mat-option value="Diabetologia">Diabetologia</mat-option>
@@ -114,7 +107,7 @@
 
       <mat-form-field>
         <mat-label>Comments</mat-label>
-        <textarea [(ngModel)]="patient.comments" name="comments"
+        <textarea [(ngModel)]="appointment.comments" name="comments"
                   matInput placeholder="Write your comments here"></textarea>
       </mat-form-field>
 
@@ -122,6 +115,19 @@
     </form>
   </mat-card-content>
 </mat-card>
+<!--
+    <app-jsmap
+      [zoom]="zoom"
+      [lat]="lat"
+      [lng]="lng"
+      (notify)="handleMapChange($event)"
+    ></app-jsmap>
+    <app-mapposition
+      [zoom]="zoom"
+      [lat]="lat"
+      [lng]="lng"
+      (notify)="handleInputChange($event)"
+    ></app-mapposition>-->
 
 
 

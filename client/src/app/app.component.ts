@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Patient} from "./patient";
 import {ActivatedRoute, Router} from "@angular/router";
-import {PatientService} from "./patient.service";
+import {AppointmentService} from "./appointment.service";
+import {Appointment} from "./appointment";
+import {Address} from "./address";
 
 @Component({
   selector: 'app-root',
@@ -10,52 +12,67 @@ import {PatientService} from "./patient.service";
 })
 export class AppComponent {
   title = 'jsapi-angular';
+  appointment: Appointment;
   patient: Patient;
+  address: Address;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private patientService: PatientService) {
-    this.patient = new Patient(1, 'Edi', 'Mother', '535130943', '93519933854',
-      'mother2000@wp.pl', 'krakow ul. mickiewicza', '13.04.2014', 'minor',
-      'diabetologia', 'dolega mi bol tarczycy i brak insuliny');
+              private appointmentService: AppointmentService) {
+    this.address = new Address(1, 'Sosnowiec', '32-210', 'mickiewicza', 12, 43);
+    this.patient = new Patient(1, 'Emi', 'blonid', '845647265', '33521199552',
+      'hsals@onet.pl', this.address, '11-JAN-2001');
+    this.appointment = new Appointment(1, 'MINOR', 'diabetologia', 'boli mnie reka',
+      this.patient);
   }
 
   onSubmit() {
-    console.log(this.patient);
-    this.patientService.savePatient(this.patient);
-  }
-  /*constructor() {
-    this.zoom = 2;
-    this.lat = 0;
-    this.lng = 0;
-  }
-
-  zoom: number;
-  lat: number;
-  lng: number;
-
-  handleInputChange(event: Event) {
-    const target = <HTMLInputElement> event.target;
-    if (target) {
-      if (target.name === 'zoom') {
-        this.zoom = parseFloat(target.value);
+    console.log(this.appointment);
+    this.appointmentService.saveAppointment(this.appointment).subscribe({
+      next: (response) => {
+        console.log('Appointment saved', response);
+        // Handle successful response here
+      },
+      error: (error) => {
+        console.error('Error saving patient', error);
+        // Handle error here
       }
-      if (target.name === 'lat') {
-        this.lat = parseFloat(target.value);
-      }
-      if (target.name === 'lng') {
-        this.lng = parseFloat(target.value);
-      }
-    }
+    });
   }
-
-  handleMapChange(event: H.map.ChangeEvent) {
-    if (event.newValue.lookAt) {
-      const lookAt = event.newValue.lookAt;
-      this.zoom = lookAt.zoom;
-      this.lat = lookAt.position.lat;
-      this.lng = lookAt.position.lng;
-    }
-  }*/
-
 }
+
+/*constructor() {
+  this.zoom = 2;
+  this.lat = 0;
+  this.lng = 0;
+}
+
+zoom: number;
+lat: number;
+lng: number;
+
+handleInputChange(event: Event) {
+  const target = <HTMLInputElement> event.target;
+  if (target) {
+    if (target.name === 'zoom') {
+      this.zoom = parseFloat(target.value);
+    }
+    if (target.name === 'lat') {
+      this.lat = parseFloat(target.value);
+    }
+    if (target.name === 'lng') {
+      this.lng = parseFloat(target.value);
+    }
+  }
+}
+
+handleMapChange(event: H.map.ChangeEvent) {
+  if (event.newValue.lookAt) {
+    const lookAt = event.newValue.lookAt;
+    this.zoom = lookAt.zoom;
+    this.lat = lookAt.position.lat;
+    this.lng = lookAt.position.lng;
+  }
+}*/
+
+
