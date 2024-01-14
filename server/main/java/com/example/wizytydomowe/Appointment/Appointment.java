@@ -22,6 +22,8 @@ public class Appointment {
     private Importance importance;
     @Digits(integer = 4, fraction = 2)
     private Integer price;
+    private String comments;
+    private String specialization;
     @ManyToOne
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
