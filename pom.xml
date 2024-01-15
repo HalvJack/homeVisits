@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>wizytydomowe</artifactId>
+    <artifactId>homeVisits</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>wizytydomowe</name>
     <description>wizytydomowe</description>
@@ -122,5 +122,6 @@
             </plugin>
         </plugins>
     </build>
+
 
 </project>
