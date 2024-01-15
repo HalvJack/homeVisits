@@ -1,3 +1,5 @@
+import {Importance} from "./importance";
+
 export class Location{
   id: number= 1;
   longitude: number = 1;

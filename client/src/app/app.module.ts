@@ -10,6 +10,11 @@ import {MainComponent} from "../main/main.component";
 import { MaptileComponent } from '../maptile/maptile.component';
 import { JsmapComponent } from '../jsmap/jsmap.component';
 import { MappositionComponent } from '../mapposition/mapposition.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatCardModule} from "@angular/material/card";
+import {MatInputModule} from "@angular/material/input";
+import {MatSelectModule} from "@angular/material/select";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -25,7 +30,12 @@ import { MappositionComponent } from '../mapposition/mapposition.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule
   ],
   providers: [MainService],
   bootstrap: [AppComponent]
