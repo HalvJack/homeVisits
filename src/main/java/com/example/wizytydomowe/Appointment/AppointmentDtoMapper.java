@@ -29,6 +29,8 @@ public class AppointmentDtoMapper {
         appointment.setId(appointmentDto.getId());
         appointment.setDate(appointmentDto.getDate());
         appointment.setImportance(appointmentDto.getImportance());
+        appointment.setComments(appointmentDto.getComments());
+        appointment.setSpecialization(appointmentDto.getSpecialization());
         appointment.setPrice(appointmentDto.getPrice());
         appointment.setPatient(patientDtoMapper.map(appointmentDto.getPatient()));
         appointment.setDoctor(appointmentDto.getDoctor());
