@@ -15,6 +15,8 @@ import {MatCardModule} from "@angular/material/card";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {MatButtonModule} from "@angular/material/button";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import {MatButtonModule} from "@angular/material/button";
     MappositionComponent
   ],
   imports: [
+    MatNativeDateModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -35,7 +38,8 @@ import {MatButtonModule} from "@angular/material/button";
     MatCardModule,
     MatInputModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDatepickerModule
   ],
   providers: [MainService],
   bootstrap: [AppComponent]
