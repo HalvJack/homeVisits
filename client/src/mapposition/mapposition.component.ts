@@ -2,7 +2,7 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {LocationService} from "./location.service";
 import {Location} from "./location"
-import {Importance} from "./importance"
+import {Importance} from "./importance";
 
 @Component({
   selector: 'app-mapposition',

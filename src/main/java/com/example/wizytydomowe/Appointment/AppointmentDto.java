@@ -5,7 +5,6 @@ import com.example.wizytydomowe.Patient.Patient;
 import com.example.wizytydomowe.Patient.PatientDto;
 import lombok.Data;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data

@@ -15,6 +15,12 @@ public class DoctorService {
     private final DoctorRepository doctorRepository;
     private final DoctorDtoMapper doctorDtoMapper;
 
+    List<DoctorDto> findBySpecialization(String specialization){
+        List<Doctor> doctorListBySpecialization = doctorRepository.findBySpecialization(specialization);
+        return doctorListBySpecialization.stream()
+                .map(doctorDtoMapper::map)
+                .collect(Collectors.toList());
+    }
 
     Optional<DoctorDto> getDoctorById(Long id) {
         return doctorRepository.findById(id)

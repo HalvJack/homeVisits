@@ -17,7 +17,7 @@ export class JsmapComponent {
   ngAfterViewInit(): void{
     if(!this.map && this.mapDiv){
       const platform = new H.service.Platform({
-        apikey: 'eyJhbGciOiJSUzUxMiIsImN0eSI6IkpXVCIsImlzcyI6IkhFUkUiLCJhaWQiOiJBZFphMVlUY2xWMWdaaUdmNFYxMSIsImlhdCI6MTcwMTY5MzM3NiwiZXhwIjoxNzAxNzc5Nzc2LCJraWQiOiJqMSJ9'
+        apikey: 'eyJhbGciOiJSUzUxMiIsImN0eSI6IkpXVCIsImlzcyI6IkhFUkUiLCJhaWQiOiJBZFphMVlUY2xWMWdaaUdmNFYxMSIsImlhdCI6MTcwMjAyMjU3MiwiZXhwIjoxNzAyMTA4OTcyLCJraWQiOiJqMSJ9.ZXlKaGJHY2lPaUprYVhJaUxDSmxibU1pT2lKQk1qVTJRMEpETFVoVE5URXlJbjAuLkRlOUkzcDdtMmJoWVF2dUJjVUt3NkEudHRDZFR4WUE0VTNNbXgyU1pkNTZKblozYklEeE5rVE84U3dTUDJSUmRUWF91VEZsYVkzNXZhVk9IUWQ3MnUtVmg4Ti12Z3Q3QS1wVXAxcHZVVGllLTZ6dWlROVowdVBYUFB3aG03VFhsUVBVQVVwNEloZ1hWeTdYMGJ1OUkzcWlGRnAzRTl2elJBRkZVNHBTTTBkSFFDVmRsaUpSQlZNWUtXNUx1MVZrNnFNLlp0ZVdPRlVJSk1YQlJxM0RmeDdsenUwZ0JRdUtWeHV3ZFdjenllRXlvNVk.c8hJ8O69IfhwASWDisCE4YZLtRlFVIVhb6FYAGqNoCBHvVppJi-tf5IJamxN07Gh7MFSB8Hi-UT6-6kPxiqwI0W7EVAYGPbk8WU62QimN3o6Hooj7__jllP4kCAC9ncAKHu_H267RGHeSNVcI2vRMfrJRWnIPAV9dUx1Ts6UA0-pMvGXqHKLqzG9eUXEzXenCU1U7mWklAFj7fQKzfky_ICnblC4SpEbmX_cLL5INdoUJGpNK_IQXkZmBbWH0B9PMmdy7-b_SK-hMeXSuxavM8tvuuaWHCcLDZZVp8dHBk5rif8yvSVbpmkMil9XFlxFKA7YND_59D2eud7ttbgAYQ'
       });
       const layers = platform.createDefaultLayers();
       const map = new H.Map(

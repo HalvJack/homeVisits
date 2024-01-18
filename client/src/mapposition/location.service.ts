@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Location} from "./location";
-import {switchMap, Observable} from "rxjs";
+import {Observable} from "rxjs";
 import {Doctor} from "../doctor-form/doctor";
 
 @Injectable({
@@ -11,24 +11,19 @@ import {Doctor} from "../doctor-form/doctor";
 export class LocationService {
 
   private locationUrl: string;
-  private availableDoctors: string;
+  private submitDoctorUrl: string;
 
   constructor(private http: HttpClient) {
     this.locationUrl = 'http://localhost:8080/location';
-    this.availableDoctors = 'http://localhost:8080/availableDoctors'
+    this.submitDoctorUrl = 'http://localhost:8080/submittedDoctor';
   }
 
-  public availableDoctorsList(): Observable<Doctor[]> {
-    return this.http.get<Doctor[]>(this.availableDoctors);
-  }
 
   public saveLocation(location: Location): Observable<Doctor[]> {
-    return this.http.post(this.locationUrl, location).pipe(
-      switchMap(() => {
-        return this.availableDoctorsList();
-      })
-    )
+    return this.http.post<Doctor[]>(this.locationUrl, location);
   }
 
-
+  public submitDoctorChoice(doctor: Doctor): Observable<Doctor> {
+    return this.http.post<Doctor>(this.submitDoctorUrl, doctor);
+  }
 }
