@@ -18,4 +18,6 @@ public class Address {
     private String street;
     private Integer houseNumber;
     private Integer flatNumber;
+    private Float longitude;
+    private Float latitude;
 }

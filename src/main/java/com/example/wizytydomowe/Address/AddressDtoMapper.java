@@ -12,6 +12,8 @@ public class AddressDtoMapper {
         addressDto.setStreet(address.getStreet());
         addressDto.setHouseNumber(address.getHouseNumber());
         addressDto.setFlatNumber(address.getFlatNumber());
+        addressDto.setLatitude(addressDto.getLatitude());
+        addressDto.setLongitude(addressDto.getLongitude());
         return addressDto;
     }
 
@@ -23,6 +25,8 @@ public class AddressDtoMapper {
         address.setStreet(addressDto.getStreet());
         address.setHouseNumber(addressDto.getHouseNumber());
         address.setFlatNumber(addressDto.getFlatNumber());
+        address.setLatitude(addressDto.getLatitude());
+        address.setLongitude(addressDto.getLongitude());
         return address;
     }
 }

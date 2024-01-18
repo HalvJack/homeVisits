@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>wizytydomowe</artifactId>
+    <artifactId>homeVisits</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>wizytydomowe</name>
     <description>wizytydomowe</description>
@@ -83,6 +83,7 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
+            <version>2.2.220</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -99,10 +100,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
         </dependency>
     </dependencies>
 
@@ -122,5 +119,6 @@
             </plugin>
         </plugins>
     </build>
+
 
 </project>

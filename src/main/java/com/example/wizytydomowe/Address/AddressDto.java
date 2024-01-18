@@ -10,4 +10,6 @@ public class AddressDto {
     private String street;
     private Integer houseNumber;
     private Integer flatNumber; // Optional
+    private Float longitude;
+    private Float latitude;
 }

@@ -17,7 +17,7 @@ VALUES
     ('Aleksander', 'Turocha', '00233100346', '2000-03-31', '4', '112345029', 'olek_turocha@gmail.com'),
     ('Jakub', 'Hałucha', '00242200996', '2000-04-22', '1', '535110460', 'kubaszekh@gmail.com');
 INSERT INTO
-    appointment(date, importance, price, doctor_id, patient_id)
+    appointment(date, importance, comments, specialization, price, doctor_id, patient_id)
 VALUES
-    ('2023-03-24', 1, 300, 2, 1),
-    ('2023-04-14', 2, 250, 1, 2);
+    ('2023-03-24', 1, 'Mam bol glowy', 'internista',300, 2, 1),
+    ('2023-04-14', 2, 'zapalenie pecherza', 'diabetolog',250, 1, 2);
