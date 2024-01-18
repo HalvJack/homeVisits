@@ -69,14 +69,6 @@
                matInput placeholder="Enter your flat number">
       </mat-form-field>
 
-      <!--<input matInput type="date" [(ngModel)]="patient.dateOfBirth"
-             name="date"
-             [matDatepicker]="picker"
-             placeholder="Enter birth date">
-      <mat-hint>MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>-->
-
       <input [formControl]="dateOfBirth" matInput
              [matDatepicker]="picker"
              placeholder="Enter birth date"
