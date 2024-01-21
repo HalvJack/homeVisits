@@ -14,7 +14,7 @@ export class MainService {
     this.doctorUrl = 'http://localhost:8080/doctor';
   }
 
-  public findAllDoctors(): Observable<Doctor[]>{
+  public findAllDoctorss(): Observable<Doctor[]>{
     return this.http.get<Doctor[]>(this.doctorUrl);
   }
 
@@ -23,14 +23,12 @@ export class MainService {
     return this.http.post<Doctor>(this.doctorUrl, doctor).pipe(
       switchMap(() => {
         // After saving, fetch the list of doctors
-        return this.findAllDoctors();
+        return this.findAllDoctorss();
       }),
       map((doctors) => {
         // Find the last doctor's id
         let lastDoctor = doctors[doctors.length - 1];
-        let newId = lastDoctor.id + 1; // Calculate the new id
-        // Update the doctor with the new id
-        doctor.id = newId;
+
         return doctor;
       })
     );

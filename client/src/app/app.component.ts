@@ -11,6 +11,8 @@ import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/
 import * as _moment from 'moment';
 import {default as _rollupMoment} from 'moment';
 import {error} from "@angular/compiler-cli/src/transformers/util";
+import {DoctorService} from "../doctor-form/doctor.service";
+import {LocationService} from "../doctor-form/location.service";
 
 const moment = _rollupMoment || _moment;
 
@@ -45,7 +47,9 @@ export class AppComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private appointmentService: AppointmentService,
-              private geolocationService: GeolocationService) {
+              private geolocationService: GeolocationService,
+              private doctorService: DoctorService,
+              private locationService: LocationService) {
     this.address = new Address('Sosnowiec', '32-210', 'mickiewicza', 1, 43,
       15.887, 50.054);
     this.dateOfBirth = new FormControl(moment(new Date(2000, 11, 10)));
@@ -54,6 +58,10 @@ export class AppComponent implements OnInit {
       'hsals@onet.pl', this.address, dob);
     this.appointment = new Appointment('MINOR', 'diabetologia', 'boli mnie reka',
       this.patient);
+  }
+
+  getSpecialization(): { specialization: string } {
+    return {specialization: this.appointment.specialization};
   }
 
   onSubmit() {
@@ -72,7 +80,15 @@ export class AppComponent implements OnInit {
     this.appointmentService.saveAppointment(appointmentToSend).subscribe({
       next: (response) => {
         console.log('Appointment saved', response);
-        // Handle successful response here
+        this.router.navigate(['/app-doctor-form']).then(success => {
+          if (success) {
+            console.log('Navigation to /app-doctor-list successful');
+          } else {
+            console.log('Navigation to /app-doctor-list failed');
+          }
+        }).catch(error => {
+          console.error('Navigation error:', error);
+        });
       },
       error: (error) => {
         console.error('Error saving patient', error);
@@ -83,9 +99,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.obtainAndSendLocation().then(() => {
-      // Handle successful completion if needed
+      this.locationService.setLocation(this.appointment.patient.address.latitude,
+        this.appointment.patient.address.longitude);
     }).catch(error => {
       console.error('Error in obtainAndSendLocation:', error);
+
     });
   }
 
@@ -93,7 +111,6 @@ export class AppComponent implements OnInit {
     try {
       const position = await this.geolocationService.getCurrentLocation();
       this.updatePatientLocation(position.coords.latitude, position.coords.longitude);
-      await this.sendLocationToServer();
     } catch (error) {
       if (error instanceof Error) {
         console.error('Error occurred: ', error.message);
@@ -110,16 +127,7 @@ export class AppComponent implements OnInit {
     this.appointment.patient.address.longitude = longitude;
   }
 
-  async sendLocationToServer() {
-    const {latitude, longitude} = this.appointment.patient.address;
-    try {
-      const response = await this.geolocationService.sendDataToBackend(latitude, longitude).toPromise();
-      console.log('Location sent to the server', response);
-    } catch (error) {
-      console.error('Error sending location', error);
-    }
-  }
-
+  protected readonly name = name;
 }
 
 /*constructor() {

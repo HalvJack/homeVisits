@@ -17,6 +17,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatButtonModule} from "@angular/material/button";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import { MatNativeDateModule } from '@angular/material/core';
+import {LocationService} from "../doctor-form/location.service";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,6 @@ import { MatNativeDateModule } from '@angular/material/core';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    HttpClientModule,
     BrowserAnimationsModule,
     MatCardModule,
     MatInputModule,
