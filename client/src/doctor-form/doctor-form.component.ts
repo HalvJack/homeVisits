@@ -14,14 +14,12 @@ import {Location} from "../mapposition/location";
 export class DoctorFormComponent {
   doctors!: Doctor[];
   location: Location;
-  specialization: string;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private doctorService: DoctorService,
               private locationService: LocationService) {
-    this.location = new Location(1,1);
-    this.specialization = '';
+    this.location = new Location(1,1, "Diabetologia");
   }
 
   ngOnInit() {

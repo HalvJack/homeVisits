@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Patient} from "./patient";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, NavigationExtras, Router} from "@angular/router";
 import {AppointmentService} from "./appointment.service";
 import {Appointment} from "./appointment";
 import {Address} from "./address";
@@ -13,6 +13,7 @@ import {default as _rollupMoment} from 'moment';
 import {error} from "@angular/compiler-cli/src/transformers/util";
 import {DoctorService} from "../doctor-form/doctor.service";
 import {LocationService} from "../doctor-form/location.service";
+import {Doctor} from "../doctor-form/doctor";
 
 const moment = _rollupMoment || _moment;
 
@@ -77,21 +78,48 @@ export class AppComponent implements OnInit {
     };
 
     console.log(this.appointment);
-    this.appointmentService.saveAppointment(appointmentToSend).subscribe({
-      next: (response) => {
-        console.log('Appointment saved', response);
-        this.router.navigate(['/app-doctor-form']).then(success => {
-          if (success) {
-            console.log('Navigation to /app-doctor-list successful');
-          } else {
-            console.log('Navigation to /app-doctor-list failed');
+    const locationDto = {
+      latitude: this.appointment.patient.address.latitude,
+      longitude: this.appointment.patient.address.longitude,
+      specialization: this.appointment.specialization
+    };
+
+    this.doctorService.findAvailableDoctors(locationDto).subscribe({
+      next: (doctorsResponse) => {
+        console.log('Available doctors', doctorsResponse);
+
+        // Continue with saving the appointment and then redirect
+        this.appointmentService.saveAppointment(appointmentToSend).subscribe({
+          next: (appointmentResponse) => {
+            console.log('Appointment saved', appointmentResponse);
+
+            // Prepare navigation with both doctors and appointment responses
+            const navigationExtras: NavigationExtras = {
+              state: {
+                appointment: appointmentResponse,
+                availableDoctors: doctorsResponse
+              }
+            };
+
+            // Redirect to the next page
+            this.router.navigate(['/app-doctor-form'], navigationExtras).then(success => {
+              if (success) {
+                console.log('Navigation to /app-doctor-list successful');
+              } else {
+                console.log('Navigation to /app-doctor-list failed');
+              }
+            }).catch(error => {
+              console.error('Navigation error:', error);
+            });
+          },
+          error: (error) => {
+            console.error('Error saving appointment', error);
+            // Handle error here
           }
-        }).catch(error => {
-          console.error('Navigation error:', error);
         });
       },
       error: (error) => {
-        console.error('Error saving patient', error);
+        console.error('Error finding doctors', error);
         // Handle error here
       }
     });
