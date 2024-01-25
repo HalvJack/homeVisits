@@ -5,14 +5,14 @@
       <mat-form-field>
         <mat-label>Name</mat-label>
         <input type="text" [(ngModel)]="appointment.patient.name"
-               name="name"
+               name="name" autocomplete="name"
                matInput placeholder="Enter your name">
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Surname</mat-label>
         <input type="text" [(ngModel)]="appointment.patient.surname"
-               name="surname"
+               name="surname" autocomplete="name"
                matInput placeholder="Enter your surname">
       </mat-form-field>
 
@@ -33,7 +33,7 @@
       <mat-form-field>
         <mat-label>Email</mat-label>
         <input type="text" [(ngModel)]="appointment.patient.email"
-               name="email"
+               name="email" autocomplete="email"
                matInput placeholder="Enter your email" type="email">
       </mat-form-field>
       <mat-label>Address</mat-label>
@@ -69,14 +69,6 @@
                matInput placeholder="Enter your flat number">
       </mat-form-field>
 
-      <!--<input matInput type="date" [(ngModel)]="patient.dateOfBirth"
-             name="date"
-             [matDatepicker]="picker"
-             placeholder="Enter birth date">
-      <mat-hint>MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>-->
-
       <input [formControl]="dateOfBirth" matInput
              [matDatepicker]="picker"
              placeholder="Enter birth date"
@@ -86,7 +78,6 @@
       <mat-datepicker #picker></mat-datepicker>
 
       <mat-form-field>
-        <mat-label>Importance of Visit</mat-label>
         <mat-select [(ngModel)]="appointment.importance" name="importance">
           <mat-option value="MINOR">Minor</mat-option>
           <mat-option value="MEDIUM">Medium</mat-option>
@@ -95,7 +86,6 @@
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Doctor's Specialization</mat-label>
         <mat-select [(ngModel)]="appointment.specialization" name="specialization">
           <mat-option value="Anestezjologia">Anestezjologia</mat-option>
           <mat-option value="Dermatologia i wenerologia">Dermatologia i wenerologia</mat-option>

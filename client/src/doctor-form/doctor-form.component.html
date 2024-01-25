@@ -1,47 +1,31 @@
 <div class="card my-5">
   <div class="card-body">
-    <form (ngSubmit)="onSubmit()" #doctorForm="ngForm">
-      <div class="form-group">
-        <label for="id">Id</label>
-        <input type="text" [(ngModel)]="doctor.id"
-               class="form-control"
-               id="id"
-               name="id"
-               placeholder="Enter your id"
-               required #id="ngModel">
-      </div>
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" [(ngModel)]="doctor.name"
-               class="form-control"
-               id="name"
-               name="name"
-               placeholder="Enter your name"
-               required #name="ngModel">
-      </div>
-      <div [hidden]="!name.pristine" class="alert alert-danger">Name is required</div>
-      <div class="form-group">
-        <label for="email">Surname</label>
-        <input type="text" [(ngModel)]="doctor.surname"
-               class="form-control"
-               id="surname"
-               name="surname"
-               placeholder="Enter your email address"
-               required #surname="ngModel">
-        <div [hidden]="!surname.pristine" class="alert alert-danger">Surname is required</div>
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="text" [(ngModel)]="doctor.email"
-               class="form-control"
-               id="email"
-               name="email"
-               placeholder="Enter your email address"
-               required #email="ngModel">
-        <div [hidden]="!email.pristine" class="alert alert-danger">Email is required</div>
-      </div>
-      <button type="submit" [disabled]="!doctorForm.form.valid"
-              class="btn btn-info">Submit</button>
+    <form (ngSubmit)="onSubmit()">
+      <table mat-table [dataSource]="doctors" class="mat-elevation-z8">
+
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            <!--<mat-checkbox (change)="$event ? masterToggle() : null"
+                          [checked]="selection.hasValue() && isAllSelected()"
+                          [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox>-->
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                          (change)="$event ? selection.toggle(row) : null"
+                          [checked]="selection.isSelected(row)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+
+        <!-- Other columns here -->
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
+      <button type="submit" mat-raised-button color="primary">Submit</button>
     </form>
   </div>
 </div>

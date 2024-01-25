@@ -19,8 +19,4 @@ export class GeolocationService {
     });
   }
 
-  sendDataToBackend(latitude: number, longitude: number): Observable<any> {
-    const url = 'http://localhost:8080/location'; // Your Spring Boot endpoint
-    return this.httpClient.post(url, { latitude, longitude });
-  }
 }

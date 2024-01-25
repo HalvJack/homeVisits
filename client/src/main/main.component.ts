@@ -14,8 +14,6 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.findAllDoctors().subscribe((data) => {
-      this.doctors = data;
-    });
+
   }
 }

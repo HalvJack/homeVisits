@@ -1,19 +1,22 @@
+import {Location} from "../mapposition/location";
+
 export class Doctor {
-  id: number = 1;
   name: string = '';
   surname: string = '';
-  phoneNumber: string= '';
-  specialization: string= '';
-  email: string= '';
+  phoneNumber: string = '';
+  specialization: string = '';
+  email: string = '';
+  location: Location;
 
-  constructor(id: number, name: string, surname: string, phoneNumber: string, specialization: string, email: string) {
-    this.id = id;
+  constructor(name: string, surname: string, phoneNumber: string, specialization: string, email: string,
+              location: Location) {
     this.name = name;
     this.surname = surname;
     this.phoneNumber = phoneNumber;
     this.specialization = specialization;
     this.email = email;
+    this.location = location;
   }
-
 }
+
 

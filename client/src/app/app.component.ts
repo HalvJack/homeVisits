@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Patient} from "./patient";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, NavigationExtras, Router} from "@angular/router";
 import {AppointmentService} from "./appointment.service";
 import {Appointment} from "./appointment";
 import {Address} from "./address";
@@ -10,6 +10,10 @@ import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/mater
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import * as _moment from 'moment';
 import {default as _rollupMoment} from 'moment';
+import {error} from "@angular/compiler-cli/src/transformers/util";
+import {DoctorService} from "../doctor-form/doctor.service";
+import {LocationService} from "../doctor-form/location.service";
+import {Doctor} from "../doctor-form/doctor";
 
 const moment = _rollupMoment || _moment;
 
@@ -24,6 +28,7 @@ export const MY_FORMATS = {
     monthYearA11yLabel: 'MMMM YYYY',
   },
 };
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -33,7 +38,7 @@ export const MY_FORMATS = {
     {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
   ],
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   dateOfBirth = new FormControl(moment());
   title = 'jsapi-angular';
   appointment: Appointment;
@@ -43,14 +48,21 @@ export class AppComponent implements OnInit{
   constructor(private route: ActivatedRoute,
               private router: Router,
               private appointmentService: AppointmentService,
-              private geolocationService: GeolocationService) {
-    this.address = new Address('Sosnowiec', '32-210', 'mickiewicza', 1, 43);
+              private geolocationService: GeolocationService,
+              private doctorService: DoctorService,
+              private locationService: LocationService) {
+    this.address = new Address('Sosnowiec', '32-210', 'mickiewicza', 1, 43,
+      15.887, 50.054);
     this.dateOfBirth = new FormControl(moment(new Date(2000, 11, 10)));
     const dob: Date = this.dateOfBirth.value ? this.dateOfBirth.value.toDate() : new Date();
     this.patient = new Patient('Emi', 'blonid', '845647265', '86011716415',
       'hsals@onet.pl', this.address, dob);
     this.appointment = new Appointment('MINOR', 'diabetologia', 'boli mnie reka',
       this.patient);
+  }
+
+  getSpecialization(): { specialization: string } {
+    return {specialization: this.appointment.specialization};
   }
 
   onSubmit() {
@@ -66,34 +78,84 @@ export class AppComponent implements OnInit{
     };
 
     console.log(this.appointment);
-    this.appointmentService.saveAppointment(appointmentToSend).subscribe({
-      next: (response) => {
-        console.log('Appointment saved', response);
-        // Handle successful response here
+    const locationDto = {
+      latitude: this.appointment.patient.address.latitude,
+      longitude: this.appointment.patient.address.longitude,
+      specialization: this.appointment.specialization
+    };
+
+    this.doctorService.findAvailableDoctors(locationDto).subscribe({
+      next: (doctorsResponse) => {
+        console.log('Available doctors', doctorsResponse);
+
+        // Continue with saving the appointment and then redirect
+        this.appointmentService.saveAppointment(appointmentToSend).subscribe({
+          next: (appointmentResponse) => {
+            console.log('Appointment saved', appointmentResponse);
+
+            // Prepare navigation with both doctors and appointment responses
+            const navigationExtras: NavigationExtras = {
+              state: {
+                appointment: appointmentResponse,
+                availableDoctors: doctorsResponse
+              }
+            };
+
+            // Redirect to the next page
+            this.router.navigate(['/app-doctor-form'], navigationExtras).then(success => {
+              if (success) {
+                console.log('Navigation to /app-doctor-list successful');
+              } else {
+                console.log('Navigation to /app-doctor-list failed');
+              }
+            }).catch(error => {
+              console.error('Navigation error:', error);
+            });
+          },
+          error: (error) => {
+            console.error('Error saving appointment', error);
+            // Handle error here
+          }
+        });
       },
       error: (error) => {
-        console.error('Error saving patient', error);
+        console.error('Error finding doctors', error);
         // Handle error here
       }
     });
   }
 
   ngOnInit() {
-    this.geolocationService.getCurrentLocation()
-      .then(position => {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
+    this.obtainAndSendLocation().then(() => {
+      this.locationService.setLocation(this.appointment.patient.address.latitude,
+        this.appointment.patient.address.longitude);
+    }).catch(error => {
+      console.error('Error in obtainAndSendLocation:', error);
 
-        this.geolocationService.sendDataToBackend(latitude, longitude).subscribe(
-          response => console.log('Location sent to the server', response),
-          error => console.error('Error sending location', error)
-        );
-      })
-      .catch(error => {
-        console.error('Error occurred: ', error.message);
-        // Handle the error here
-      });
+    });
   }
+
+  async obtainAndSendLocation() {
+    try {
+      const position = await this.geolocationService.getCurrentLocation();
+      this.updatePatientLocation(position.coords.latitude, position.coords.longitude);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error('Error occurred: ', error.message);
+        // Additional error handling if required
+      } else {
+        // Handle non-Error objects
+        console.error('An unknown error occurred');
+      }
+    }
+  }
+
+  updatePatientLocation(latitude: number, longitude: number) {
+    this.appointment.patient.address.latitude = latitude;
+    this.appointment.patient.address.longitude = longitude;
+  }
+
+  protected readonly name = name;
 }
 
 /*constructor() {

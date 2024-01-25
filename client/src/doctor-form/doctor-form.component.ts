@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {MainService} from "../main/main.service";
 import {Doctor} from "./doctor";
+import {DoctorService} from "./doctor.service";
+import {GeolocationService} from "../app/geolocation.service";
+import {LocationService} from "./location.service";
+import {Location} from "../mapposition/location";
+import {AppointmentDetails} from "./appointment-details";
+import {SelectionModel} from "@angular/cdk/collections";
 
 @Component({
   selector: 'app-doctor-form',
@@ -9,20 +14,32 @@ import {Doctor} from "./doctor";
   styleUrls: ['./doctor-form.component.sass']
 })
 export class DoctorFormComponent {
-  doctor: Doctor;
+  doctors!: Doctor[];
+  appointmentDetails: AppointmentDetails;
+  displayedColumns: string[] = ['select', 'name', 'surname', 'email', 'phoneNumber', 'specialization', 'latitude', 'longitude'];
+  selection = new SelectionModel<Doctor>(true, []);
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private mainService: MainService) {
-    this.doctor = new Doctor(1, 'SDv', 'fdv','11111111111', 'fdz', 'kubah20000@wp.pl');
+              private doctorService: DoctorService,
+              private locationService: LocationService) {
+    this.appointmentDetails = new AppointmentDetails(1,1, "Diabetologia");
   }
 
   onSubmit(){
-    this.mainService.saveDoctor(this.doctor).subscribe(result => this.goToDoctorList());
+
+  }
+  ngOnInit() {
+    /*this.appointmentDetails.latitude = this.locationService.getLocation().latitude;
+    this.doctorService.findAvailableDoctors(this.appointmentDetails).subscribe({
+      next: (doctors) => {
+        this.doctors = doctors;
+      },
+      error: (error) => {
+        console.error('Error fetching doctors:', error);
+        // Handle error appropriately
+      }
+    });*/
   }
 
-
-  private goToDoctorList() {
-    this.router.navigate(['/doctor']);
-  }
 }
