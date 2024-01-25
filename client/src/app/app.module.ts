@@ -18,6 +18,8 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import { MatNativeDateModule } from '@angular/material/core';
 import {LocationService} from "../doctor-form/location.service";
+import {MatTableModule} from "@angular/material/table";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import {LocationService} from "../doctor-form/location.service";
     MatSelectModule,
     MatButtonModule,
     MatDatepickerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTableModule,
+    MatCheckboxModule
   ],
   providers: [MainService],
   bootstrap: [AppComponent]
