@@ -5,6 +5,7 @@ import {DoctorService} from "./doctor.service";
 import {GeolocationService} from "../app/geolocation.service";
 import {LocationService} from "./location.service";
 import {Location} from "../mapposition/location";
+import {AppointmentDetails} from "./appointment-details";
 
 @Component({
   selector: 'app-doctor-form',
@@ -13,18 +14,18 @@ import {Location} from "../mapposition/location";
 })
 export class DoctorFormComponent {
   doctors!: Doctor[];
-  location: Location;
+  appointmentDetails: AppointmentDetails;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private doctorService: DoctorService,
               private locationService: LocationService) {
-    this.location = new Location(1,1, "Diabetologia");
+    this.appointmentDetails = new AppointmentDetails(1,1, "Diabetologia");
   }
 
   ngOnInit() {
-    this.location = this.locationService.getLocation();
-    this.doctorService.findAvailableDoctors(this.location).subscribe({
+    this.appointmentDetails.latitude = this.locationService.getLocation().latitude;
+    this.doctorService.findAvailableDoctors(this.appointmentDetails).subscribe({
       next: (doctors) => {
         this.doctors = doctors;
       },
