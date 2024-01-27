@@ -1,5 +1,7 @@
 package com.example.wizytydomowe.Doctor;
 
+import com.example.wizytydomowe.Appointment.AppointmentDto;
+import com.example.wizytydomowe.Appointment.AppointmentService;
 import com.example.wizytydomowe.Patient.PatientDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -24,6 +27,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/doctor")
 public class DoctorController {
     private final DoctorService doctorService;
+    private final AppointmentService appointmentService;
 
     @GetMapping("/{id}")
     ResponseEntity<DoctorDto> getDoctorById(@PathVariable Long id) {
@@ -41,6 +45,12 @@ public class DoctorController {
     @PostMapping
     ResponseEntity<DoctorDto> saveDoctor(@Valid @RequestBody DoctorDto doctorDto) {
         DoctorDto savedDoctor = doctorService.saveDoctor(doctorDto);
+        Optional<AppointmentDto> lastAppointment = appointmentService.getAppointmentById(appointmentService.getLastAppointmentId());
+
+        lastAppointment.setDoctorId(savedDoctor.getId());
+
+        appointmentService.saveAppointment(lastAppointment);
+
         URI savedAppointmentUri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(savedDoctor.getId())
