@@ -1,6 +1,7 @@
 package com.example.wizytydomowe.Appointment;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -15,17 +16,22 @@ public class AppointmentService {
         this.appointmentDtoMapper = appointmentDtoMapper;
     }
 
-    Optional<AppointmentDto> getAppointmentById(Long id) {
+    public Optional<AppointmentDto> getAppointmentById(Long id) {
         return appointmentRepository.findById(id)
                 .map(appointmentDtoMapper::map);
     }
 
-    AppointmentDto saveAppointment(AppointmentDto appointmentDto) {
+    public AppointmentDto saveAppointment(AppointmentDto appointmentDto) {
         Appointment appointment = appointmentDtoMapper.map(appointmentDto);
         Appointment savedAppointment = appointmentRepository.save(appointment);
         return appointmentDtoMapper.map(savedAppointment);
     }
 
+    public Long getLastAppointmentId() {
+        Long lastAppointmentId = (long) appointmentRepository.findAll().size();
+
+        return lastAppointmentId;
+    }
 
 
     void deleteAppointment(Long id) {
