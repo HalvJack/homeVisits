@@ -1,12 +1,10 @@
 package com.example.wizytydomowe.Sms;
 
-import com.example.wizytydomowe.Email.EmailService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.twilio.Twilio;
@@ -17,19 +15,22 @@ import com.twilio.type.PhoneNumber;
 @RequiredArgsConstructor
 public class SmsController {
 
-    //private final String SID = "AC7966eefa166474ad1c7beb3c6479581b";
-    //private final String Auth = "8f6344b9c113b87fed40dec803fa6406";
-    //private final String Number = "+19402027513";
+    @Value("${twilio.sid}")
+    private String SID;
+
+    @Value("${twilio.authToken}")
+    private String AUTH_TOKEN;
+
+    @Value("${twilio.number}")
+    private String TWILIO_NUMBER;
 
     @GetMapping(value = "/sendSMS")
     public ResponseEntity<String> sendSMS() {
-        //SmsService smsService;
-        //smsService = new SmsService();
-        Twilio.init("AC7966eefa166474ad1c7beb3c6479581b", "8f6344b9c113b87fed40dec803fa6406");
+        Twilio.init(SID, AUTH_TOKEN);
         //Twilio.setUsername(Twilio.getRestClient().getAccountSid());
 
-        Message.creator(new PhoneNumber("+48131213151"),
-                new PhoneNumber("+1345146"), "Pacjent Jakub Hałucha chce zarezerwować wizytę").create();
+        Message.creator(new PhoneNumber("+48321184460"),
+                new PhoneNumber(TWILIO_NUMBER), "Lekarz specjalista ginekolog jk chce zarezerwować dla ciebie wizytę domowa, skusisz się;) ?").create();
 
         return new ResponseEntity<String>("Message sent successfully", HttpStatus.OK);
     }

@@ -47,9 +47,9 @@ public class DoctorController {
         DoctorDto savedDoctor = doctorService.saveDoctor(doctorDto);
         Optional<AppointmentDto> lastAppointment = appointmentService.getAppointmentById(appointmentService.getLastAppointmentId());
 
-        lastAppointment.setDoctorId(savedDoctor.getId());
+       /* lastAppointment.setDoctorId(savedDoctor.getId());
 
-        appointmentService.saveAppointment(lastAppointment);
+        appointmentService.saveAppointment(lastAppointment);*/
 
         URI savedAppointmentUri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
