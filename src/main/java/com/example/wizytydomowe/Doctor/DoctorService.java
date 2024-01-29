@@ -22,6 +22,14 @@ public class DoctorService {
                 .collect(Collectors.toList());
     }
 
+    DoctorDto getDoctorByPhoneNumber(String phoneNumber){
+        List<Doctor> doctorByPhoneNumber = doctorRepository.findDoctorByPhoneNumber(phoneNumber);
+        return doctorByPhoneNumber.stream()
+                .map(doctorDtoMapper::map)
+                .collect(Collectors.toList())
+                .get(0);
+    }
+
     Optional<DoctorDto> getDoctorById(Long id) {
         return doctorRepository.findById(id)
                 .map(doctorDtoMapper::map);

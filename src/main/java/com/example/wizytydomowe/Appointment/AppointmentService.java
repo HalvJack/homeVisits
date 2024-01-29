@@ -28,9 +28,7 @@ public class AppointmentService {
     }
 
     public Long getLastAppointmentId() {
-        Long lastAppointmentId = (long) appointmentRepository.findAll().size();
-
-        return lastAppointmentId;
+        return (long) appointmentRepository.findAll().size();
     }
 
 

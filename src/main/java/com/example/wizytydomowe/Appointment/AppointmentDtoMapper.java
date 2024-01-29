@@ -11,7 +11,7 @@ public class AppointmentDtoMapper {
     public AppointmentDtoMapper(PatientDtoMapper patientDtoMapper){
         this.patientDtoMapper = patientDtoMapper;
     }
-    AppointmentDto map(Appointment appointment) {
+    public AppointmentDto map(Appointment appointment) {
         AppointmentDto appointmentDto = new AppointmentDto();
         appointmentDto.setId(appointment.getId());
         appointmentDto.setDate(appointment.getDate());
@@ -24,7 +24,7 @@ public class AppointmentDtoMapper {
         return appointmentDto;
     }
 
-    Appointment map(AppointmentDto appointmentDto) {
+    public Appointment map(AppointmentDto appointmentDto) {
         Appointment appointment = new Appointment();
         appointment.setId(appointmentDto.getId());
         appointment.setDate(appointmentDto.getDate());
