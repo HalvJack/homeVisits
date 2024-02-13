@@ -19,7 +19,8 @@ public class EmailService {
 
     private JavaMailSender javaMailSender;
 
-    @Value("${spring.mail.username}") private String sender;
+    /*@Value("${spring.mail.username}")*/
+    //private final String sender;
 
     public String sendSimpleMail(EmailDetails details)
     {
@@ -30,7 +31,7 @@ public class EmailService {
                     = new SimpleMailMessage();
 
 
-            mailMessage.setFrom(sender);
+            mailMessage.setFrom("sender");
             mailMessage.setTo(details.getRecipient());
             mailMessage.setText(details.getMsgBody());
             mailMessage.setSubject(details.getSubject());
@@ -57,7 +58,7 @@ public class EmailService {
 
             mimeMessageHelper
                     = new MimeMessageHelper(mimeMessage, true);
-            mimeMessageHelper.setFrom(sender);
+            mimeMessageHelper.setFrom("sender");
             mimeMessageHelper.setTo(details.getRecipient());
             mimeMessageHelper.setText(details.getMsgBody());
             mimeMessageHelper.setSubject(
