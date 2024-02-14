@@ -20,9 +20,12 @@ public class PriceService {
     private static final double PER_100_KM = 100.0;
     private static final double PRICE_PER_MINUTE = 5.0;
 
-    public PriceService(DistanceService distanceService, TripSummary tripSummary) {
+    private static final double BASE_PRICE_FOR_HOME_VISIT = 200.0;
+
+    public PriceService(DistanceService distanceService, TripSummary tripSummary, AppointmentService appointmentService) {
         this.distanceService = distanceService;
         this.tripSummary = tripSummary;
+        this.appointmentService = appointmentService;
     }
 
     public double calculateVisitPrice(DoctorDto doctorDto, double visitLatitude, double visitLongitude) {
@@ -31,10 +34,16 @@ public class PriceService {
         String destination = visitLatitude + "," + visitLongitude;
         double travelTimeSeconds = tripSummary.getRouteSummary(origin, destination);
 
-        return (distanceCost(distance) +
+        double totalCost = (distanceCost(distance) +
                 travelTimeCost(travelTimeSeconds) +
                 calculateAdditionalCostForSpecialization(doctorDto.getSpecialization()) +
-                visitTimeCost(LocalTime.now())) * importanceCost(getImportance());
+                visitTimeCost(LocalTime.now())) * importanceCost(getImportance()) +
+                BASE_PRICE_FOR_HOME_VISIT;
+
+        // Ograniczenie kosztu do maksymalnie 500 zł
+        final double MAX_COST = 500.0;
+
+        return Math.round(Math.min(totalCost, MAX_COST) * 100.0) / 100.0;
     }
 
 

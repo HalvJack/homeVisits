@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
+import com.example.wizytydomowe.Appointment.Importance;
 import com.example.wizytydomowe.HereApi.DistanceService;
 import com.example.wizytydomowe.HereApi.PriceService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -46,13 +47,17 @@ class AppointmentDetailsControllerTest {
 
     @Test
     public void testFindAvailableDoctors() throws Exception {
-        LocationDto locationDto = new LocationDto(10.0, 20.0, "Cardiology");
-        List<DoctorDto> doctors = Arrays.asList(new DoctorDto("Dr. Smith", "Cardiology"));
+        LocationDto locationDto = new LocationDto(10.0, 20.0, Importance.MEDIUM, "Cardiology");
+        List<DoctorDto> doctors = Arrays.asList(new DoctorDto(1L, "Dr. Smith", "Cardiology",
+                "110430943","cardiology", "kubah2012@gmail.com", 10.0, 20.0));
         given(doctorService.findBySpecialization("Cardiology")).willReturn(doctors);
         given(distanceService.calculateDistance(any(DoctorDto.class), eq(10.0), eq(20.0))).willReturn(30.0);
         given(priceService.calculateVisitPrice(any(DoctorDto.class), eq(10.0), eq(20.0))).willReturn(100.0);
 
-        List<DoctorWithPriceDto> expectedDoctorsWithPrices = Arrays.asList(new DoctorWithPriceDto(new DoctorDto("Dr. Smith", "Cardiology"), 100.0));
+        List<DoctorWithPriceDto> expectedDoctorsWithPrices = Arrays.asList(new DoctorWithPriceDto(new DoctorDto(1L,
+                "Dr. Smith", "Cardiology",
+                "110430943", "cardiology", "kubah2012@gmail.com", 10.0, 20.0),
+                100.0));
         ObjectMapper objectMapper = new ObjectMapper();
         String locationDtoJson = objectMapper.writeValueAsString(locationDto);
 

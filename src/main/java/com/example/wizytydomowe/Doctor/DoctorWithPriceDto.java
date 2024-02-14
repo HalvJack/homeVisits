@@ -1,7 +1,9 @@
 package com.example.wizytydomowe.Doctor;
 
 
+import lombok.Data;
 
+@Data
 public class DoctorWithPriceDto {
     private DoctorDto doctor;
     private double appointmentPrice;
@@ -10,4 +12,7 @@ public class DoctorWithPriceDto {
         doctor = doctorDto;
         appointmentPrice = price;
     }
+
+    public DoctorWithPriceDto()
+    {}
 }
