@@ -1,0 +1,151 @@
+<mat-card>
+  <mat-card-title>Home Visits</mat-card-title>
+  <div class="container-div">
+  <div class="forms">
+  <mat-card-content>
+    <form (ngSubmit)="onSubmit()" #patientForm="ngForm" class="form-container">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input type="text" [(ngModel)]="appointment.patient.name"
+               name="name" autocomplete="name"
+               matInput placeholder="Enter your name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Surname</mat-label>
+        <input type="text" [(ngModel)]="appointment.patient.surname"
+               name="surname" autocomplete="name"
+               matInput placeholder="Enter your surname">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Phone Number</mat-label>
+        <input type="text" [(ngModel)]="appointment.patient.phoneNumber"
+               name="phoneNumber"
+               matInput placeholder="Enter your phone number">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>PESEL</mat-label>
+        <input type="text" [(ngModel)]="appointment.patient.pesel"
+               name="pesel"
+               matInput placeholder="Enter your PESEL">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input type="text" [(ngModel)]="appointment.patient.email"
+               name="email" autocomplete="email"
+               matInput placeholder="Enter your email" type="email">
+      </mat-form-field>
+      <mat-label>Address</mat-label>
+      <mat-form-field>
+        <mat-label>City</mat-label>
+        <input type="text" [(ngModel)]="patient.address.city"
+               name="city"
+               matInput placeholder="Enter your city">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Zip Code</mat-label>
+        <input type="text" [(ngModel)]="patient.address.zipCode"
+               name="zipCode"
+               matInput placeholder="Enter your zip code">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Street</mat-label>
+        <input type="text" [(ngModel)]="patient.address.street"
+               name="street"
+               matInput placeholder="Enter your street">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>House Number</mat-label>
+        <input type="number" [(ngModel)]="patient.address.houseNumber"
+               name="houseNumber"
+               matInput placeholder="Enter your house number">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Flat Number</mat-label>
+        <input type="number" [(ngModel)]="patient.address.flatNumber"
+               name="flatNumber"
+               matInput placeholder="Enter your flat number">
+      </mat-form-field>
+
+      <input [formControl]="dateOfBirth" matInput
+             [matDatepicker]="picker"
+             placeholder="Enter birth date"
+             name="date">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+
+      <mat-form-field>
+        <mat-select [(ngModel)]="appointment.importance" name="importance">
+          <mat-option value="MINOR">Minor</mat-option>
+          <mat-option value="MEDIUM">Medium</mat-option>
+          <mat-option value="URGENT">Urgent</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select [(ngModel)]="appointment.specialization" name="specialization">
+          <mat-option value="Anestezjologia">Anestezjologia</mat-option>
+          <mat-option value="Dermatologia i wenerologia">Dermatologia i wenerologia</mat-option>
+          <mat-option value="Diabetologia">Diabetologia</mat-option>
+          <mat-option value="Fizjoterapia">Fizjoterapia</mat-option>
+          <mat-option value="Internista">Internista</mat-option>
+          <mat-option value="Kardiologia">Kardiologia</mat-option>
+          <mat-option value="Masaż mobilny">Masaż mobilny</mat-option>
+          <mat-option value="Medycyna rodzinna">Medycyna rodzinna</mat-option>
+          <mat-option value="Pediatria">Pediatria</mat-option>
+          <mat-option value="Psychiatria">Psychiatria</mat-option>
+          <mat-option value="Radiologia i diagnostyka obrazowa">Radiologia i diagnostyka obrazowa</mat-option>
+          <mat-option value="Stomatolog">Stomatolog</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <mat-form-field>
+        <mat-label>Comments</mat-label>
+        <textarea [(ngModel)]="appointment.comments" name="comments" type="text"
+                  matInput placeholder="Write your comments here"></textarea>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </form>
+  </mat-card-content>
+  </div>
+  <div class="description">
+    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel cursus lorem, vel pulvinar sem. Sed blandit, libero et hendrerit cursus, urna ipsum fermentum nibh, sed luctus ligula lacus fermentum mi. Donec sed nunc fermentum, blandit augue ullamcorper, fringilla justo. Nullam vitae tellus semper, placerat quam quis, scelerisque nulla. Vestibulum sed nisi posuere, hendrerit dui tincidunt, porta dolor. Donec viverra massa ut fringilla egestas. Fusce erat ligula, tincidunt eget tristique non, mattis ut arcu. Mauris quis ipsum magna. Proin aliquam malesuada nunc, eget aliquet neque convallis eu. Curabitur nec elementum erat. Curabitur ac tellus ligula. Nam facilisis eu leo sed egestas.
+
+Vestibulum finibus lacinia ultrices. Cras a blandit magna, et suscipit nisi. Praesent at pharetra mauris. Nullam consectetur laoreet lorem, eget sollicitudin ex. Pellentesque ac eros ac velit egestas tempor. Suspendisse volutpat, odio in tristique viverra, purus orci scelerisque turpis, interdum tristique magna erat nec nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;
+
+Proin pellentesque ligula ac dapibus pellentesque. Duis mattis lorem nec porta consequat. In hac habitasse platea dictumst. Morbi luctus, enim quis lobortis tempor, odio orci pretium justo, nec laoreet augue ipsum non magna. Nulla sit amet purus ac quam blandit lobortis. Donec non accumsan mi. Integer lorem est, vestibulum vel quam vel, porta tincidunt magna. Donec ac lacus sed tortor porttitor tincidunt. Ut at vestibulum enim. Suspendisse potenti. Sed sapien neque, lobortis ac dignissim id, tincidunt a sapien. Vivamus et libero erat. Praesent fermentum urna sed urna scelerisque tincidunt.
+
+Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris quis massa fermentum, luctus nulla eget, pellentesque velit. Etiam eu magna vel magna condimentum blandit. Nulla molestie luctus quam, euismod vulputate odio consequat vitae. Nullam ac hendrerit magna. Aliquam vitae consectetur neque, ac sagittis metus. In maximus dolor quis nibh cursus, ullamcorper tempor lorem pulvinar. Ut massa urna, fringilla at est et, maximus finibus nibh. Phasellus mattis risus urna, vel efficitur purus mattis et. Curabitur rhoncus tincidunt lobortis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+In tempus nulla molestie pellentesque lobortis. Fusce vitae convallis mi. Nunc lacinia arcu et tincidunt fermentum. Nulla sit amet dapibus orci, et dignissim augue. Nam nec neque purus. Etiam consequat arcu leo, nec maximus quam gravida at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent sagittis at erat id sollicitudin. Maecenas pretium, ante ut hendrerit venenatis, ligula neque malesuada nunc, scelerisque placerat tellus arcu ultricies dui. Sed dapibus quis purus at consequat. Proin tempus efficitur commodo.</span>
+  </div>
+  </div>
+</mat-card>
+<!--
+    <app-jsmap
+      [zoom]="zoom"
+      [lat]="lat"
+      [lng]="lng"
+      (notify)="handleMapChange($event)"
+    ></app-jsmap>
+    <app-mapposition
+      [zoom]="zoom"
+      [lat]="lat"
+      [lng]="lng"
+      (notify)="handleInputChange($event)"
+    ></app-mapposition>-->
+
+
+
+
+
+
+
+

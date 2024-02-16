@@ -19,6 +19,7 @@ export class DoctorFormComponent {
   appointmentDetails: AppointmentDetails;
   displayedColumns: string[] = ['select', 'name', 'surname', 'email', 'phoneNumber', 'specialization', 'latitude', 'longitude', 'price'];
   selection = new SelectionModel<DoctorWithPrice>(true, []);
+  availableDoctors!: DoctorWithPrice[];
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -26,6 +27,7 @@ export class DoctorFormComponent {
               private locationService: LocationService) {
     this.appointmentDetails = new AppointmentDetails(1,1, "Diabetologia");
   }
+
 
   onSubmit(){
     const selectedDoctors = this.selection.selected;
@@ -48,16 +50,11 @@ export class DoctorFormComponent {
     });
   }
   ngOnInit() {
-    /*this.appointmentDetails.latitude = this.locationService.getLocation().latitude;
-    this.doctorService.findAvailableDoctors(this.appointmentDetails).subscribe({
-      next: (doctors) => {
-        this.doctors = doctors;
-      },
-      error: (error) => {
-        console.error('Error fetching doctors:', error);
-        // Handle error appropriately
-      }
-    });*/
+    this.appointmentDetails.latitude = this.locationService.getLocation().latitude;
+    const currentNavigation = this.router.getCurrentNavigation();
+    if (currentNavigation?.extras.state){
+      this.availableDoctors = currentNavigation.extras.state['availableDoctors'];
+    }
   }
 
 }
