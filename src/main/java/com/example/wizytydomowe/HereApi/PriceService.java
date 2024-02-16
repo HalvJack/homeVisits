@@ -21,6 +21,7 @@ public class PriceService {
     private static final double PRICE_PER_MINUTE = 5.0;
 
     private static final double BASE_PRICE_FOR_HOME_VISIT = 200.0;
+    private static final double MAX_COST = 500.0;
 
     public PriceService(DistanceService distanceService, TripSummary tripSummary, AppointmentService appointmentService) {
         this.distanceService = distanceService;
@@ -39,9 +40,6 @@ public class PriceService {
                 calculateAdditionalCostForSpecialization(doctorDto.getSpecialization()) +
                 visitTimeCost(LocalTime.now())) * importanceCost(getImportance()) +
                 BASE_PRICE_FOR_HOME_VISIT;
-
-        // Ograniczenie kosztu do maksymalnie 500 zł
-        final double MAX_COST = 500.0;
 
         return Math.round(Math.min(totalCost, MAX_COST) * 100.0) / 100.0;
     }
