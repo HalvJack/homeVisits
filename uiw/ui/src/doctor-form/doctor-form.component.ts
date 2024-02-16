@@ -7,6 +7,7 @@ import {LocationService} from "./location.service";
 import {Location} from "../mapposition/location";
 import {AppointmentDetails} from "./appointment-details";
 import {SelectionModel} from "@angular/cdk/collections";
+import {DoctorWithPrice} from "./doctorWithPrice";
 
 @Component({
   selector: 'app-doctor-form',
@@ -16,8 +17,8 @@ import {SelectionModel} from "@angular/cdk/collections";
 export class DoctorFormComponent {
   doctors!: Doctor[];
   appointmentDetails: AppointmentDetails;
-  displayedColumns: string[] = ['select', 'name', 'surname', 'email', 'phoneNumber', 'specialization', 'latitude', 'longitude'];
-  selection = new SelectionModel<Doctor>(true, []);
+  displayedColumns: string[] = ['select', 'name', 'surname', 'email', 'phoneNumber', 'specialization', 'latitude', 'longitude', 'price'];
+  selection = new SelectionModel<DoctorWithPrice>(true, []);
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -27,7 +28,24 @@ export class DoctorFormComponent {
   }
 
   onSubmit(){
+    const selectedDoctors = this.selection.selected;
 
+    const doctorToSend = selectedDoctors[0];
+    this.sendDoctorData(doctorToSend);
+  }
+
+  sendDoctorData(doctorData: any) {
+    this.doctorService.sendDoctor(doctorData).subscribe({
+      next: (response) => {
+        // Handle successful response
+        console.log('Doctor data sent successfully', response);
+        // Optional: Navigate to another page or show success message
+      },
+      error: (error) => {
+        // Handle error
+        console.error('Error sending doctor data', error);
+      }
+    });
   }
   ngOnInit() {
     /*this.appointmentDetails.latitude = this.locationService.getLocation().latitude;

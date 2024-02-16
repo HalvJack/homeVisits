@@ -78,20 +78,20 @@ export class AppComponent implements OnInit {
     };
 
     console.log(this.appointment);
-    const locationDto = {
-      latitude: this.appointment.patient.address.latitude,
-      longitude: this.appointment.patient.address.longitude,
-      specialization: this.appointment.specialization
-    };
+    this.appointmentService.saveAppointment(appointmentToSend).subscribe({
+      next: (appointmentResponse) => {
+        console.log('Appointment saved', appointmentResponse);
 
-    this.doctorService.findAvailableDoctors(locationDto).subscribe({
-      next: (doctorsResponse) => {
-        console.log('Available doctors', doctorsResponse);
+        // Only after successfully saving the appointment, find available doctors
+        const locationDto = {
+          latitude: appointmentResponse.patient.address.latitude,
+          longitude: appointmentResponse.patient.address.longitude,
+          specialization: appointmentToSend.specialization
+        };
 
-        // Continue with saving the appointment and then redirect
-        this.appointmentService.saveAppointment(appointmentToSend).subscribe({
-          next: (appointmentResponse) => {
-            console.log('Appointment saved', appointmentResponse);
+        this.doctorService.findAvailableDoctors(locationDto).subscribe({
+          next: (doctorsResponse) => {
+            console.log('Available doctors', doctorsResponse);
 
             // Prepare navigation with both doctors and appointment responses
             const navigationExtras: NavigationExtras = {
@@ -113,14 +113,14 @@ export class AppComponent implements OnInit {
             });
           },
           error: (error) => {
-            console.error('Error saving appointment', error);
-            // Handle error here
+            console.error('Error finding doctors', error);
+            // Handle error here for doctorService
           }
         });
       },
       error: (error) => {
-        console.error('Error finding doctors', error);
-        // Handle error here
+        console.error('Error saving appointment', error);
+        // Handle error here for appointmentService
       }
     });
   }

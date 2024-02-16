@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class DistanceService {
-    // Earth radius in kilometers
     private static final double EARTH_RADIUS_KM = 6371.0;
 
     public double calculateDistance(DoctorDto doctorDto, double pointLatitude, double pointLongitude) {
