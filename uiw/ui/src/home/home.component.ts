@@ -48,7 +48,6 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit() {
-    // this.router.navigate(['/app-doctor-form']);
     const formattedDOB = moment(this.patient.dateOfBirth).format('YYYY-MM-DD');
     const patientToSend = {
       ...this.patient,
@@ -83,6 +82,7 @@ export class HomeComponent implements OnInit {
                 availableDoctors: doctorsResponse
               }
             };
+            console.log(navigationExtras);
             this.router.navigate(['/app-doctor-form'], navigationExtras);
           },
         });

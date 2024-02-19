@@ -1,7 +1,7 @@
 <div class="card my-5">
   <div class="card-body">
     <form (ngSubmit)="onSubmit()">
-      <table mat-table [dataSource]="doctors" class="mat-elevation-z8">
+      <table mat-table [dataSource]="availableDoctors" class="mat-elevation-z8">
 
         <!-- Checkbox Column -->
         <ng-container matColumnDef="select">

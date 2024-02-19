@@ -55,6 +55,7 @@ export class DoctorFormComponent {
     if (currentNavigation?.extras.state){
       this.availableDoctors = currentNavigation.extras.state['availableDoctors'];
     }
+    console.log('availabile doctors' + this.availableDoctors);
   }
 
 }

@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @CrossOrigin(origins = "http://localhost:4200")
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/location")
+@RequestMapping(value = "/location", produces = "application/json")
 @Slf4j
 public class AppointmentDetailsController {
 

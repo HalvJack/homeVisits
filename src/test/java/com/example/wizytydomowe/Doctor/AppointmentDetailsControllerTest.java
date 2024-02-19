@@ -3,7 +3,10 @@ package com.example.wizytydomowe.Doctor;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
@@ -47,16 +50,16 @@ class AppointmentDetailsControllerTest {
 
     @Test
     public void testFindAvailableDoctors() throws Exception {
-        LocationDto locationDto = new LocationDto(10.0, 20.0, Importance.MEDIUM, "Cardiology");
-        List<DoctorDto> doctors = Arrays.asList(new DoctorDto(1L, "Dr. Smith", "Cardiology",
-                "110430943","cardiology", "kubah2012@gmail.com", 10.0, 20.0));
+        LocationDto locationDto = new LocationDto(20.0, 10.0, Importance.MEDIUM, "Cardiology");
+        List<DoctorDto> doctors = Arrays.asList(new DoctorDto(1L, "Jacob", "Smith",
+                "110430943","Cardiology", "kubah2012@gmail.com", 10.0, 20.0));
         given(doctorService.findBySpecialization("Cardiology")).willReturn(doctors);
         given(distanceService.calculateDistance(any(DoctorDto.class), eq(10.0), eq(20.0))).willReturn(30.0);
         given(priceService.calculateVisitPrice(any(DoctorDto.class), eq(10.0), eq(20.0))).willReturn(100.0);
 
         List<DoctorWithPriceDto> expectedDoctorsWithPrices = Arrays.asList(new DoctorWithPriceDto(new DoctorDto(1L,
-                "Dr. Smith", "Cardiology",
-                "110430943", "cardiology", "kubah2012@gmail.com", 10.0, 20.0),
+                "Jacob", "Smith",
+                "110430943", "Cardiology", "kubah2012@gmail.com", 10.0, 20.0),
                 100.0));
         ObjectMapper objectMapper = new ObjectMapper();
         String locationDtoJson = objectMapper.writeValueAsString(locationDto);
