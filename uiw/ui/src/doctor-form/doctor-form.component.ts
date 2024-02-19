@@ -19,7 +19,8 @@ export class DoctorFormComponent {
   appointmentDetails: AppointmentDetails;
   displayedColumns: string[] = ['select', 'name', 'surname', 'email', 'phoneNumber', 'specialization', 'latitude', 'longitude', 'price'];
   selection = new SelectionModel<DoctorWithPrice>(true, []);
-  availableDoctors!: DoctorWithPrice[];
+  availableDoctors: DoctorWithPrice[] | undefined;
+
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -34,6 +35,7 @@ export class DoctorFormComponent {
 
     const doctorToSend = selectedDoctors[0];
     this.sendDoctorData(doctorToSend);
+    this.router.navigate(['/next-component']);
   }
 
   sendDoctorData(doctorData: any) {
@@ -50,12 +52,23 @@ export class DoctorFormComponent {
     });
   }
   ngOnInit() {
-    this.appointmentDetails.latitude = this.locationService.getLocation().latitude;
-    const currentNavigation = this.router.getCurrentNavigation();
-    if (currentNavigation?.extras.state){
-      this.availableDoctors = currentNavigation.extras.state['availableDoctors'];
+      if (history.state.availableDoctors) {
+        this.availableDoctors = history.state.availableDoctors.map((item: any) =>
+          new DoctorWithPrice(
+            new Doctor(
+              item.doctor.name,
+              item.doctor.surname,
+              item.doctor.phoneNumber,
+              item.doctor.specialization,
+              item.doctor.email,
+              new Location(item.doctor.latitude, item.doctor.longitude)
+            ),
+            item.appointmentPrice
+          )
+        );
+        console.log('Deserialized availableDoctors:', this.availableDoctors);
+      }
     }
-    console.log('availabile doctors' + this.availableDoctors);
-  }
 
-}
+
+  }
