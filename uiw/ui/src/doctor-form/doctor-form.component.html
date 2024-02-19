@@ -1,31 +1,61 @@
-<div class="card my-5">
-  <div class="card-body">
-    <form (ngSubmit)="onSubmit()">
-      <table mat-table [dataSource]="availableDoctors" class="mat-elevation-z8">
+<mat-card *ngIf="availableDoctors">
+  <form (ngSubmit)="onSubmit()">
+    <mat-table [dataSource]="availableDoctors" class="mat-elevation-z8">
+      <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef> Select </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
 
-        <!-- Checkbox Column -->
-        <ng-container matColumnDef="select">
-          <th mat-header-cell *matHeaderCellDef>
-            <!--<mat-checkbox (change)="$event ? masterToggle() : null"
-                          [checked]="selection.hasValue() && isAllSelected()"
-                          [indeterminate]="selection.hasValue() && !isAllSelected()">
-            </mat-checkbox>-->
-          </th>
-          <td mat-cell *matCellDef="let row">
-            <mat-checkbox (click)="$event.stopPropagation()"
-                          (change)="$event ? selection.toggle(row) : null"
-                          [checked]="selection.isSelected(row)">
-            </mat-checkbox>
-          </td>
-        </ng-container>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.doctor.name}} </mat-cell>
+      </ng-container>
 
-        <!-- Other columns here -->
+      <!-- Surname Column -->
+      <ng-container matColumnDef="surname">
+        <mat-header-cell *matHeaderCellDef> Surname </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.doctor.surname}} </mat-cell>
+      </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <!-- Specialization Column -->
+      <ng-container matColumnDef="specialization">
+        <mat-header-cell *matHeaderCellDef> Specialization </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.doctor.specialization}} </mat-cell>
+      </ng-container>
 
-      </table>
-      <button type="submit" mat-raised-button color="primary">Submit</button>
-    </form>
-  </div>
-</div>
+      <!-- Price Column -->
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.doctor.email}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="phoneNumber">
+        <mat-header-cell *matHeaderCellDef> Phone Number </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.doctor.phoneNumber}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="latitude">
+        <mat-header-cell *matHeaderCellDef> Latitude </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.doctor.location.latitude}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="longitude">
+        <mat-header-cell *matHeaderCellDef> Longitude </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.doctor.location.longitude}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+  </form>
+</mat-card>
