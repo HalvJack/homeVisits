@@ -36,7 +36,7 @@ export class DoctorService {
     longitude: number,
     specialization: string,
   }):
-    Observable<Doctor[]> {
-    return this.http.post<Doctor[]>(this.apiUrl, location);
+    Observable<DoctorWithPrice[]> {
+    return this.http.post<DoctorWithPrice[]>(this.apiUrl, location);
   }
 }

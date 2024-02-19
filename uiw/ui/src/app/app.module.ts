@@ -21,6 +21,7 @@ import {LocationService} from "../doctor-form/location.service";
 import {MatTableModule} from "@angular/material/table";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatMomentDateModule} from "@angular/material-moment-adapter";
+import {HomeComponent} from "../home/home.component";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {MatMomentDateModule} from "@angular/material-moment-adapter";
     MainComponent,
     MaptileComponent,
     JsmapComponent,
-    MappositionComponent
+    MappositionComponent,
+    HomeComponent
   ],
   imports: [
     MatNativeDateModule,
