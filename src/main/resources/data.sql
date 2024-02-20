@@ -9,7 +9,7 @@ VALUES
 INSERT INTO
     doctor(name, surname, phone_Number, specialization, email, latitude, longitude)
 VALUES
-    ('Paweł', 'Hałucha', '506193161', 'Medycyna Pracy', 'pawhal@tlen.pl', '50.051838', '50.051838'),
+    ('Paweł', 'Hałucha', '535110460', 'Internista', 'pawhal@tlen.pl', '50.061533', '19.905223'),
     ('Edyta', 'Hałucha', '888668259', 'Diabetologia', 'edyta_med@wp.pl', '50.051838', '15.885622'),
     ('Jan', 'Kowalski', '501000001', 'Anestezjologia', 'jan.kowalski@mail.com', '50.091533', '19.895223'),
     ('Anna', 'Nowak', '501000002', 'Dermatologia i wenerologia', 'anna.nowak@mail.com', '50.071533', '19.875223'),

@@ -26,8 +26,8 @@ public class ChosenDoctorController {
     private final SmsService smsService;
 
     @PostMapping
-    public ResponseEntity<?> submitDoctor(@RequestBody DoctorDto doctorDto, @RequestBody int price) {
-        Doctor doctor = doctorDtoMapper.map(doctorService.getDoctorByPhoneNumber(doctorDto.getPhoneNumber()));
+    public ResponseEntity<?> submitDoctor(@RequestBody DoctorWithPriceDto doctorWithPriceDto) {
+        Doctor doctor = doctorDtoMapper.map(doctorService.getDoctorByPhoneNumber(doctorWithPriceDto.getDoctor().getPhoneNumber()));
         if (doctor == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Doctor not found");
         }
@@ -37,7 +37,7 @@ public class ChosenDoctorController {
         if (recentAppointment.isPresent()) {
             Appointment appointment = appointmentDtoMapper.map(recentAppointment.get());
             appointment.setDoctor(doctor);
-            appointment.setPrice(price);
+            appointment.setPrice((int) doctorWithPriceDto.getAppointmentPrice());
             appointmentService.saveAppointment(appointmentDtoMapper.map(appointment));
             try {
                 String messageContent = smsService.prepareMessage(recentAppointment.get());

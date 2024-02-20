@@ -1,5 +1,6 @@
 <mat-card *ngIf="availableDoctors">
   <form (ngSubmit)="onSubmit()">
+    <mat-card-title>List of doctors</mat-card-title>
     <mat-table [dataSource]="availableDoctors" class="mat-elevation-z8">
       <ng-container matColumnDef="select">
         <mat-header-cell *matHeaderCellDef> Select </mat-header-cell>
@@ -56,6 +57,6 @@
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
 
-    <button mat-raised-button color="primary" type="submit">Submit</button>
+    <div class="buttonDoctor"><button mat-raised-button color="primary" type="submit">Submit</button></div>
   </form>
 </mat-card>
