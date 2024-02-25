@@ -2,6 +2,7 @@ import {Component, ViewChild, ElementRef, Input, SimpleChanges, Output, EventEmi
 import {GeolocationService} from "../app/geolocation.service";
 import H from '@here/maps-api-for-javascript';
 import onResize from 'simple-element-resize-detector';
+import {environment} from "../environment";
 
 @Component({
   selector: 'app-jsmap',
@@ -23,7 +24,7 @@ export class JsmapComponent {
     if (!this.map && this.mapDiv) {
       this.geolocationService.getCurrentLocation().then(position => {
         const platform = new H.service.Platform({
-          apikey: '9PtJH_3GhoKA2I6PThd8kq0Qr-2IbWd9nw7NCnDG8bg'
+          apikey: environment.hereMapsApiKey
         });
         const layers = platform.createDefaultLayers();
         const userLocation = {lat: position.coords.latitude, lng: position.coords.longitude};
@@ -36,6 +37,17 @@ export class JsmapComponent {
             zoom: 12,
           },
         );
+
+
+        const userMarker = new H.map.Marker(userLocation);
+        map.addObject(userMarker);
+
+
+        // Add doctor location marker
+        const doctorLocation = {lat: (position.coords.latitude - 0.005), lng: position.coords.longitude + 0.005};
+        const doctorMarker = new H.map.Marker(doctorLocation);
+        map.addObject(doctorMarker);
+
         if (this.mapDiv) {
           onResize(this.mapDiv.nativeElement, () => {
             map.getViewPort().resize();

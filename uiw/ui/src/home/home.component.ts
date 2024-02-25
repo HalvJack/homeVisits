@@ -116,8 +116,8 @@ export class HomeComponent implements OnInit {
   }
 
   updatePatientLocation(latitude: number, longitude: number) {
-    this.appointment.patient.address.latitude = latitude;
-    this.appointment.patient.address.longitude = longitude;
+    this.appointment.patient.address.latitude = 45.7214687;
+    this.appointment.patient.address.longitude = 7.3957376;
   }
 
   protected readonly name = name;
