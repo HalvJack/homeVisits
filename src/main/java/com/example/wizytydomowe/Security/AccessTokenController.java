@@ -16,7 +16,6 @@ public class AccessTokenController {
         String refreshToken = request.getHeader("Refresh-Token");
         try {
             String username = JwtUtil.verifyToken(refreshToken).getSubject();
-            // Sprawdź czy refresh token jest ważny, np. czy istnieje w bazie danych i nie wygasł
 
             String newAccessToken = JwtUtil.generateToken(username);
             String newRefreshToken = JwtUtil.generateRefreshToken(username);
