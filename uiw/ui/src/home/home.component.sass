@@ -1,5 +1,20 @@
+.card-header-content
+  display: flex
+  align-items: center
+
+.mat-card-title
+    margin-right: 10px // Adjust spacing between title and image as needed
+
+
+.title-image
+    width: auto // Adjust based on your image's aspect ratio
+    height: 50px // Example height, adjust as needed
+
+
+
 mat-form-field
-  margin-bottom: 16px /* Adjust as needed */
+  margin-bottom: 16px
+  /* Adjust as needed */
   display: flex
   flex-direction: column
   align-items: stretch
@@ -17,6 +32,14 @@ mat-card-title
   font-size: 48px
   padding: 30px
 
+mat-card-title
+  letter-spacing: 20px
+  transition: 1s ease-in-out color
+
+mat-card-title:hover
+  color: darkblue
+
+
 ::ng-deep .mat-mdc-form-field-subscript-wrapper
   height: 0
 
@@ -33,12 +56,26 @@ mat-card-title
 
 .container-div
   display: flex
+  border: 1px solid black
 
 .forms, .description
   flex: 1
   color: white
 
 .description
-  font-size: 50px
+  font-size: 35px
+  letter-spacing: 3px
+  padding: 15px
+  margin: 10px
+  border: 1px solid white
+  line-height: 1.5
+.myButton
+  width: 50%
+  height: 90px
+  font-size: 30px
+
+.buttonDiv
+  display: flex
+  justify-content: center
 
 

@@ -16,7 +16,7 @@ public class SmsResponseController {
     public ResponseEntity<String> receiveAndRespondSMS(@RequestParam("Body") String body, @RequestParam("From") String from) {
         String message;
         if ("YES".equalsIgnoreCase(body.trim())) {
-            message = "You are all set up with the appointment, check out a mail";
+            message = "You are all set up with the appointment.";
         } else if ("NO".equalsIgnoreCase(body.trim())) {
             message = "You rejected the appointment";
         } else {

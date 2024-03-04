@@ -2,6 +2,8 @@ import {Component, ViewChild, ElementRef, Input, SimpleChanges, Output, EventEmi
 import {GeolocationService} from "../app/geolocation.service";
 import H from '@here/maps-api-for-javascript';
 import onResize from 'simple-element-resize-detector';
+import {environment} from "../environment";
+import {WebSocketService} from "../app/web-socket.service";
 
 @Component({
   selector: 'app-jsmap',
@@ -23,7 +25,7 @@ export class JsmapComponent {
     if (!this.map && this.mapDiv) {
       this.geolocationService.getCurrentLocation().then(position => {
         const platform = new H.service.Platform({
-          apikey: 'eyJhbGciOiJSUzUxMiIsImN0eSI6IkpXVCIsImlzcyI6IkhFUkUiLCJhaWQiOiJBZFphMVlUY2xWMWdaaUdmNFYxMSIsImlhdCI6MTcwMjAyMjU3MiwiZXhwIjoxNzAyMTA4OTcyLCJraWQiOiJqMSJ9.ZXlKaGJHY2lPaUprYVhJaUxDSmxibU1pT2lKQk1qVTJRMEpETFVoVE5URXlJbjAuLkRlOUkzcDdtMmJoWVF2dUJjVUt3NkEudHRDZFR4WUE0VTNNbXgyU1pkNTZKblozYklEeE5rVE84U3dTUDJSUmRUWF91VEZsYVkzNXZhVk9IUWQ3MnUtVmg4Ti12Z3Q3QS1wVXAxcHZVVGllLTZ6dWlROVowdVBYUFB3aG03VFhsUVBVQVVwNEloZ1hWeTdYMGJ1OUkzcWlGRnAzRTl2elJBRkZVNHBTTTBkSFFDVmRsaUpSQlZNWUtXNUx1MVZrNnFNLlp0ZVdPRlVJSk1YQlJxM0RmeDdsenUwZ0JRdUtWeHV3ZFdjenllRXlvNVk.c8hJ8O69IfhwASWDisCE4YZLtRlFVIVhb6FYAGqNoCBHvVppJi-tf5IJamxN07Gh7MFSB8Hi-UT6-6kPxiqwI0W7EVAYGPbk8WU62QimN3o6Hooj7__jllP4kCAC9ncAKHu_H267RGHeSNVcI2vRMfrJRWnIPAV9dUx1Ts6UA0-pMvGXqHKLqzG9eUXEzXenCU1U7mWklAFj7fQKzfky_ICnblC4SpEbmX_cLL5INdoUJGpNK_IQXkZmBbWH0B9PMmdy7-b_SK-hMeXSuxavM8tvuuaWHCcLDZZVp8dHBk5rif8yvSVbpmkMil9XFlxFKA7YND_59D2eud7ttbgAYQ'
+          apikey: environment.hereMapsApiKey
         });
         const layers = platform.createDefaultLayers();
         const userLocation = {lat: position.coords.latitude, lng: position.coords.longitude};
@@ -33,9 +35,20 @@ export class JsmapComponent {
           {
             pixelRatio: window.devicePixelRatio,
             center: userLocation,
-            zoom: 10,
+            zoom: 12,
           },
         );
+
+
+        const userMarker = new H.map.Marker(userLocation);
+        map.addObject(userMarker);
+
+
+        // Add doctor location marker
+        const doctorLocation = {lat: (position.coords.latitude - 0.005), lng: position.coords.longitude + 0.005};
+        const doctorMarker = new H.map.Marker(doctorLocation);
+        map.addObject(doctorMarker);
+
         if (this.mapDiv) {
           onResize(this.mapDiv.nativeElement, () => {
             map.getViewPort().resize();

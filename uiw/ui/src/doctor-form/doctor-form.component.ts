@@ -35,10 +35,10 @@ export class DoctorFormComponent {
 
     const doctorToSend = selectedDoctors[0];
     this.sendDoctorData(doctorToSend);
-    this.router.navigate(['/next-component']);
+    this.router.navigate(['/app-jsmap']);
   }
 
-  sendDoctorData(doctorData: any) {
+  sendDoctorData(doctorData: DoctorWithPrice) {
     this.doctorService.sendDoctor(doctorData).subscribe({
       next: (response) => {
         // Handle successful response

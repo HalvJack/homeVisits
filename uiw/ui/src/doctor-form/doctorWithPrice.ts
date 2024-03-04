@@ -1,8 +1,9 @@
 import {Doctor} from "./doctor";
 
 export class DoctorWithPrice {
-  doctor: Doctor;
   price: number;
+  doctor: Doctor;
+
 
   constructor(doctor: Doctor, price: number) {
     this.doctor = doctor;

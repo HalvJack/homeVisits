@@ -19,15 +19,7 @@ export class DoctorService {
     this.doctorUrl = 'http://localhost:8080/submittedDoctor';
   }
 
-  public sendDoctor(doctorWithPrice: {
-    name: string;
-    surname: string;
-    phoneNumber: string;
-    specialization: string;
-    email: string;
-    location: Location;
-    price: number;
-  }): Observable<DoctorWithPrice> {
+  public sendDoctor(doctorWithPrice: DoctorWithPrice): Observable<DoctorWithPrice> {
     return this.http.post<DoctorWithPrice>(this.doctorUrl, doctorWithPrice);
   }
 
