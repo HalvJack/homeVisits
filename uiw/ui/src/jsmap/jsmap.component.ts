@@ -3,6 +3,7 @@ import {GeolocationService} from "../app/geolocation.service";
 import H from '@here/maps-api-for-javascript';
 import onResize from 'simple-element-resize-detector';
 import {environment} from "../environment";
+import {WebSocketService} from "../app/web-socket.service";
 
 @Component({
   selector: 'app-jsmap',
