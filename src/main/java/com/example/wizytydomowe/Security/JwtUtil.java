@@ -11,6 +11,8 @@ import java.util.Date;
 
 public class JwtUtil {
     private static final long EXPIRATION_TIME = 900_000;
+
+    public static final long REFRESH_EXPIRATION_TIME = 1_500_000L;
     private static String SECRET;
 
     @Value("${jwt.token.key}")
@@ -36,4 +38,12 @@ public class JwtUtil {
             throw new RuntimeException("Token verification failed");
         }
     }
+
+    public static String generateRefreshToken(String username) {
+        return JWT.create()
+                .withSubject(username)
+                .withExpiresAt(new Date(System.currentTimeMillis() + REFRESH_EXPIRATION_TIME))
+                .sign(Algorithm.HMAC512(SECRET.getBytes()));
+    }
+
 }
