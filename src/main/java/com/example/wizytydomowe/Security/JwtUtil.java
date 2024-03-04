@@ -5,12 +5,20 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Date;
 
 public class JwtUtil {
-    private static final long EXPIRATION_TIME = 900_000; // 15 minut
-    private static final String SECRET = "TwojSekretnyKlucz"; // Użyj bezpiecznego klucza
+    private static final long EXPIRATION_TIME = 900_000;
+
+    public static final long REFRESH_EXPIRATION_TIME = 1_500_000L;
+    private static String SECRET;
+
+    @Value("${jwt.token.key}")
+    public void setSecret(String sec) {
+        JwtUtil.SECRET = sec;
+    }
 
     public static String generateToken(String username) {
         return JWT.create()
@@ -30,4 +38,12 @@ public class JwtUtil {
             throw new RuntimeException("Token verification failed");
         }
     }
+
+    public static String generateRefreshToken(String username) {
+        return JWT.create()
+                .withSubject(username)
+                .withExpiresAt(new Date(System.currentTimeMillis() + REFRESH_EXPIRATION_TIME))
+                .sign(Algorithm.HMAC512(SECRET.getBytes()));
+    }
+
 }
